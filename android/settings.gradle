@@ -1,0 +1,3 @@
+rootProject.name = 'ee2_mobile_app'
+
+include ':app'
