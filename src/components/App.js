@@ -10,6 +10,8 @@ import React, { Component } from 'react';
 import {
   Platform, StyleSheet, Text, View,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { testPromiseSuccess } from 'datalayer/actions/app.action';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n Cmd+D or shake for dev menu',
@@ -37,7 +39,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends Component {
+class App extends Component {
+  logIn = () => {
+    const { testPromiseSuccess } = this.props;
+    testPromiseSuccess();
+  }
+
+  display = () => {
+    const { loggedIn } = this.props;
+    return loggedIn ? 'Yes' : 'No';
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -48,3 +60,13 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ app }) => ({
+  loggedIn: app.check,
+});
+
+const mapDispatchToProps = {
+  testPromiseSuccess,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
