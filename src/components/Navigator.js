@@ -6,7 +6,8 @@ import {
 } from 'react-navigation';
 import Home from 'components/Home';
 import QR from 'components/Home/QR';
-import Login from 'components/Login';
+import Authentication from 'components/Authentication';
+import Login from 'components/Authentication/Login';
 import Guest from 'components/Guest';
 import EventDetail from 'components/Home/EventDetail';
 import Accepted from 'components/Guest/Accepted';
@@ -16,6 +17,9 @@ import CheckedIn from 'components/Guest/CheckedIn';
 const StackNavigator = createAppContainer(
   createStackNavigator(
     {
+      Authentication: {
+        screen: Authentication,
+      },
       Login: {
         screen: Login,
       },
@@ -33,7 +37,7 @@ const StackNavigator = createAppContainer(
       },
     },
     {
-      initialRouteName: 'Login',
+      initialRouteName: 'Authentication',
       headerMode: 'none',
     }
   )
@@ -44,7 +48,7 @@ export const DrawerNavigator = createAppContainer(
   createDrawerNavigator({
     StackNavigator,
   }, {
-  // contentComponent: () => <View><Text>Nhau nhau</Text></View>,
+    // contentComponent: () => <View><Text>Nhau nhau</Text></View>,
     drawerWidth: 230,
   })
 );
