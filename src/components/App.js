@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import store from 'datalayer/store';
-import Navigator from 'components/Navigator';
+import SwitchStack from 'components/Navigator';
 
 console.disableYellowBox = true;
 
@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <ReduxProvider store={store}>
-        <Navigator.DrawerNavigator />
+        <SwitchStack />
       </ReduxProvider>
     );
   }

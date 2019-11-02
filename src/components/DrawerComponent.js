@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,18 +13,18 @@ const styles = StyleSheet.create({
   },
 });
 
-class EventDetail extends Component {
+class DrawerComponent extends Component {
   render() {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>This is a Event Detail page!</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Guest')}>
-          <Text>Go to Guest</Text>
+        <Text>NHAU NHAU!</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+          <Text>Go to Settings Page</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default EventDetail;
+export default withNavigation(DrawerComponent);

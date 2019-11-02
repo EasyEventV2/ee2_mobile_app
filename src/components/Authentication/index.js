@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View,
+  StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,11 +18,8 @@ class Authentication extends Component {
     return (
       <View style={styles.container}>
         <Text>This is an authentication page!</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text>Go to Login Page</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}}>
-          <Text>Go to Register Page</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Text>Go to Home Page</Text>
         </TouchableOpacity>
       </View>
     );
