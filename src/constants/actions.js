@@ -1,7 +1,10 @@
-const appAction = {
+export const appAction = {
   TEST_PROMISE: 'TEST_PROMISE',
   TEST_PROMISE_SUCCESS: 'TEST_PROMISE_SUCCESS',
   TEST_PROMISE_FAILURE: 'TEST_PROMISE_FAILURE',
 };
 
-export default appAction;
+export const authAction = {
+  IS_LOGIN_COMPONENT: 'IS_LOGIN_COMPONENT',
+  IS_SIGNUP_COMPONENT: 'IS_SIGNUP_COMPONENT',
+};

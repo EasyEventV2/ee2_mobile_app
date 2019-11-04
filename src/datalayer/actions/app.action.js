@@ -1,4 +1,4 @@
-import appAction from 'constants/actions';
+import { appAction } from 'constants/actions';
 import { get } from 'utils/request';
 
 export const testPromiseSuccess = () => ({
