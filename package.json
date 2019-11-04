@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "node ./scripts/lint.js",
-    "fix": "FIX=1 node ./scripts/lint.js"
+    "lint:warn": "WARN=1 node ./scripts/lint.js",
+    "lint:fix": "FIX=1 WARN=1 node ./scripts/lint.js"
   },
   "pre-commit": [
     "lint"
