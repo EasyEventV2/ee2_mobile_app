@@ -2,3 +2,4 @@
 
 # Declare files that will always have CRLF line endings on checkout.
 *.js text eol=lf
+*.json text eol=lf
