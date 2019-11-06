@@ -1,23 +1,23 @@
 import { authAction } from 'constants/actions';
 
+// This state is for changing Login and Signup components in Authentication screen
 export const INITIAL_STATE = {
-  isLoginComponent: true,
+  currentComponent: 'Login',
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(state.isLoginComponent);
   switch (action.type) {
     case authAction.IS_LOGIN_COMPONENT: {
       return {
         ...state,
-        isLoginComponent: true,
+        currentComponent: 'Login',
       };
     }
 
     case authAction.IS_SIGNUP_COMPONENT: {
       return {
         ...state,
-        isLoginComponent: false,
+        currentComponent: 'Signup',
       };
     }
 
