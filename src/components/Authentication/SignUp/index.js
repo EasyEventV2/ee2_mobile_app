@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import {
   Text, View, TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
-
-// Import redux
 import { connect } from 'react-redux';
 import { changeToLoginComponent } from 'datalayer/actions/auth.action';
-import logoPath from 'assets/images/Easy-Event.png';
+import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import styles from './index.styles';
 
@@ -22,17 +20,8 @@ class SignUp extends Component {
     };
   }
 
-  // If I remove this method it will make error of "Unused text fields" on the inputForm
-  getInitialState = () => {
-    const {
-      fullname, email, password, confirmPassword,
-    } = this.state;
-    return {
-      fullname,
-      email,
-      password,
-      confirmPassword,
-    };
+  onChangeText = (name, text) => {
+    this.setState({ [name]: text });
   }
 
   renderSignupButton = () => {
@@ -41,8 +30,8 @@ class SignUp extends Component {
       return (
         <View>
           <TouchableOpacity
-            style={styles.button}
-            onPress={this.onLogin}
+            style={styles.mainButton}
+            onPress={this.onSignup}
           >
             <Text style={styles.text}>SIGN UP</Text>
           </TouchableOpacity>
@@ -58,6 +47,9 @@ class SignUp extends Component {
 
   render() {
     const { changeToLoginComponent } = this.props;
+    const {
+      fullname, email, password, confirmPassword,
+    } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
@@ -70,22 +62,26 @@ class SignUp extends Component {
         <View style={styles.formContainer}>
           <InputField
             placeholder="Fullname..."
-            setText={(text) => this.setState({ email: text })}
+            value={fullname}
+            onChangeText={this.onChangeText}
             isSecureText={false}
           />
           <InputField
             placeholder="Email..."
-            setText={(text) => this.setState({ email: text })}
+            value={email}
+            onChangeText={this.onChangeText}
             isSecureText={false}
           />
           <InputField
             placeholder="Password..."
-            setText={(text) => this.setState({ password: text })}
+            value={password}
+            onChangeText={this.onChangeText}
             isSecureText
           />
           <InputField
             placeholder="Confirm password..."
-            setText={(text) => this.setState({ password: text })}
+            value={confirmPassword}
+            onChangeText={this.onChangeText}
             isSecureText
           />
 
@@ -94,7 +90,7 @@ class SignUp extends Component {
         <View style={styles.buttonContainer}>
           {this.renderSignupButton()}
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: 'transparent' }]}
+            style={styles.subButton}
             onPress={() => changeToLoginComponent()}
           >
             <Text style={{ color: 'black' }}>Already have an account? Login here</Text>

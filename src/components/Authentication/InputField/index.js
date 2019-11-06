@@ -6,12 +6,16 @@ import styles from './index.styles';
 
 class InputField extends Component {
   render() {
-    const { placeholder, setText, isSecureText } = this.props;
+    const {
+      placeholder, name, value, onChangeText, isSecureText,
+    } = this.props;
     return (
       <View style={styles.inputField}>
         <TextInput
           placeholder={placeholder}
-          onChangeText={(text) => setText(text)}
+          name={name}
+          value={value}
+          onChangeText={(text) => onChangeText(name, text)}
           secureTextEntry={isSecureText}
         />
       </View>

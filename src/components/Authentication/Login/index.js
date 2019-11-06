@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, Image, ActivityIndicator,
+  Text, View, TouchableOpacity, Image, ActivityIndicator, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { changeToSignupComponent } from 'datalayer/actions/auth.action';
-import logoPath from 'assets/images/Easy-Event.png';
+import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import styles from './index.styles';
 
@@ -18,17 +18,13 @@ class Login extends Component {
     };
   }
 
-  // If I remove this method it will make error of "Unused text fields" on the inputForm
-  getInitialState = () => {
+  onLogin = () => {
     const { email, password } = this.state;
-    return {
-      email,
-      password,
-    };
+    Alert.alert(`${email} + ${password}`);
   }
 
-  onLogin = () => {
-
+  onChangeText = (name, text) => {
+    this.setState({ [name]: text });
   }
 
   renderLoginButton = () => {
@@ -37,7 +33,7 @@ class Login extends Component {
       return (
         <View>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.mainButton}
             onPress={this.onLogin}
           >
             <Text style={styles.text}>LOGIN</Text>
@@ -54,6 +50,7 @@ class Login extends Component {
 
   render() {
     const { changeToSignupComponent } = this.props;
+    const { email, password } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
@@ -66,19 +63,23 @@ class Login extends Component {
         <View style={styles.formContainer}>
           <InputField
             placeholder="Email..."
-            setText={(text) => this.setState({ email: text })}
+            name="email"
+            value={email}
+            onChangeText={this.onChangeText}
             isSecureText={false}
           />
           <InputField
             placeholder="Password..."
-            setText={(text) => this.setState({ password: text })}
+            name="password"
+            value={password}
+            onChangeText={this.onChangeText}
           />
         </View>
 
         <View style={styles.buttonContainer}>
           {this.renderLoginButton()}
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: 'transparent' }]}
+            style={styles.subButton}
             onPress={() => changeToSignupComponent()}
           >
             <Text style={{ color: 'black' }}>Don't have account? Create here</Text>
