@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native';
+import { SCREEN_HEIGHT } from 'constants/sizes';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: SCREEN_HEIGHT * 0.95,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   imgContainer: {
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    flex: 1 / 3,
+    justifyContent: 'flex-start',
+    height: SCREEN_HEIGHT * 0.25,
   },
   imgLogo: {
-    width: 200,
-    height: 138,
+    width: 150,
+    height: 103,
   },
   text: {
     fontSize: 15,
@@ -22,12 +23,13 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '90%',
-    padding: 5,
-    flex: 1 / 3,
+    paddingVertical: 15,
+    height: SCREEN_HEIGHT * 0.37,
+    justifyContent: 'space-between',
   },
   buttonContainer: {
-    justifyContent: 'center',
-    flex: 1 / 3,
+    justifyContent: 'flex-end',
+    height: SCREEN_HEIGHT * 0.22,
   },
   mainButton: {
     padding: 10,

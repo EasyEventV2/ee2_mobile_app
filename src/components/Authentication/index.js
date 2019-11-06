@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View,
+  View, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Login from './Login';
@@ -12,7 +12,9 @@ class Authentication extends Component {
     const { currentComponent } = this.props;
     return (
       <View style={styles.container}>
-        {currentComponent === 'Login' ? <Login /> : <SignUp />}
+        <ScrollView>
+          {currentComponent === 'Login' ? <Login /> : <SignUp />}
+        </ScrollView>
       </View>
     );
   }
