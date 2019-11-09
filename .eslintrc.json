@@ -47,6 +47,7 @@
     "import/no-named-as-default": 0,
     "import/prefer-default-export": 1,
     "prefer-destructuring": 1,
+    "react/no-unescaped-entities": 0,
     "arrow-parens": 0,
     "no-shadow": 0,
     "no-console": 0,
