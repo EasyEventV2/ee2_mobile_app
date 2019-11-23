@@ -1,4 +1,4 @@
-import { AsyncStorage } from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import configs from 'configs';
 
 export const KEYS = {
