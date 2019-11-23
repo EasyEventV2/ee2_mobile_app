@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT * 0.95,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
   imgContainer: {
     alignItems: 'center',
