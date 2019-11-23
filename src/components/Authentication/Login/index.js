@@ -3,24 +3,41 @@ import {
   Text, View, TouchableOpacity, Image, ActivityIndicator, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changeToSignupComponent } from 'datalayer/actions/auth.action';
+import { changeToSignupComponent, loginAPI } from 'datalayer/actions/auth.action';
 import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
+import { withNavigation } from 'react-navigation';
+import Auth from 'utils/auth';
 import styles from './index.styles';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
       loading: false,
     };
   }
 
-  onLogin = () => {
-    const { email, password } = this.state;
-    Alert.alert(`${email} + ${password}`);
+  onLogin = async () => {
+    const { loginAPI, navigation } = this.props;
+    const { username, password } = this.state;
+    const res = await loginAPI(username, password);
+    if (res.success) {
+      const accessToken = res.result.data.token;
+      Auth.deleteAccessToken();
+      await Auth.setAccessToken(accessToken);
+      console.log(Auth.getAccessToken());
+      navigation.navigate('Home');
+    } else if (!res.success) {
+      console.log(res.error);
+      if (res.error.error.code === 40402) {
+        Alert.alert('Tên đăng nhập không hợp lệ!');
+      } else if (res.error.error.code === 40001) {
+        Alert.alert('Sai mật khẩu!');
+      }
+    }
   }
 
   onChangeText = (name, text) => {
@@ -36,7 +53,7 @@ class Login extends Component {
             style={styles.mainButton}
             onPress={this.onLogin}
           >
-            <Text style={styles.text}>LOGIN</Text>
+            <Text style={styles.text}>ĐĂNG NHẬP</Text>
           </TouchableOpacity>
         </View>
       );
@@ -50,7 +67,7 @@ class Login extends Component {
 
   render() {
     const { changeToSignupComponent } = this.props;
-    const { email, password } = this.state;
+    const { username, password } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.imgContainer}>
@@ -62,14 +79,14 @@ class Login extends Component {
 
         <View style={styles.formContainer}>
           <InputField
-            placeholder="Email..."
-            name="email"
-            value={email}
+            placeholder="Tên đăng nhập hoặc Email..."
+            name="username"
+            value={username}
             onChangeText={this.onChangeText}
             isSecureText={false}
           />
           <InputField
-            placeholder="Password..."
+            placeholder="Mật khẩu..."
             name="password"
             value={password}
             onChangeText={this.onChangeText}
@@ -82,7 +99,7 @@ class Login extends Component {
             style={styles.subButton}
             onPress={() => changeToSignupComponent()}
           >
-            <Text style={{ color: 'black' }}>Don't have account? Create here</Text>
+            <Text style={{ color: 'black' }}>Không có tài khoản? Tạo mới ở đây</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -90,8 +107,16 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  payload: state.auth.payload,
+  // already get payload from redux
+  // every time redux change state, new data will be pass to component through this prop
+  currentComponent: state.auth.currentComponent,
+});
+
 const mapDispatchToProps = {
   changeToSignupComponent,
+  loginAPI,
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(Login));

@@ -7,4 +7,6 @@ export const appAction = {
 export const authAction = {
   IS_LOGIN_COMPONENT: 'IS_LOGIN_COMPONENT',
   IS_SIGNUP_COMPONENT: 'IS_SIGNUP_COMPONENT',
+  ON_LOGIN: 'ON_LOGIN',
+  ON_LOGIN_SUCCESS: 'ON_LOGIN_SUCCESS',
 };

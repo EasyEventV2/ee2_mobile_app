@@ -14,6 +14,7 @@ class SignUp extends Component {
     this.state = {
       fullname: '',
       email: '',
+      username: '',
       password: '',
       confirmPassword: '',
       loading: false,
@@ -33,7 +34,7 @@ class SignUp extends Component {
             style={styles.mainButton}
             onPress={this.onSignup}
           >
-            <Text style={styles.text}>SIGN UP</Text>
+            <Text style={styles.text}>ĐĂNG KÝ</Text>
           </TouchableOpacity>
         </View>
       );
@@ -48,7 +49,7 @@ class SignUp extends Component {
   render() {
     const { changeToLoginComponent } = this.props;
     const {
-      fullname, email, password, confirmPassword,
+      fullname, email, username, password, confirmPassword,
     } = this.state;
     return (
       <View style={styles.container}>
@@ -61,7 +62,7 @@ class SignUp extends Component {
 
         <View style={styles.formContainer}>
           <InputField
-            placeholder="Fullname..."
+            placeholder="Tên đầy đủ..."
             value={fullname}
             onChangeText={this.onChangeText}
             isSecureText={false}
@@ -73,13 +74,19 @@ class SignUp extends Component {
             isSecureText={false}
           />
           <InputField
-            placeholder="Password..."
+            placeholder="Tên đăng nhập..."
+            value={username}
+            onChangeText={this.onChangeText}
+            isSecureText={false}
+          />
+          <InputField
+            placeholder="Mật khẩu..."
             value={password}
             onChangeText={this.onChangeText}
             isSecureText
           />
           <InputField
-            placeholder="Confirm password..."
+            placeholder="Nhập lại mật khẩu..."
             value={confirmPassword}
             onChangeText={this.onChangeText}
             isSecureText
@@ -93,7 +100,7 @@ class SignUp extends Component {
             style={styles.subButton}
             onPress={() => changeToLoginComponent()}
           >
-            <Text style={{ color: 'black' }}>Already have an account? Login here</Text>
+            <Text style={{ color: 'black' }}>Đã có tài khoản? Đăng nhập tại đây</Text>
           </TouchableOpacity>
         </View>
       </View>
