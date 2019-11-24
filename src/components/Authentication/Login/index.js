@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, Image, ActivityIndicator, Alert,
+  Text, View, TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { changeToSignupComponent, loginAPI } from 'datalayer/actions/auth.action';
 import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import { withNavigation } from 'react-navigation';
-import Auth from 'utils/auth';
 import styles from './index.styles';
 
 class Login extends Component {
@@ -23,21 +22,20 @@ class Login extends Component {
   onLogin = async () => {
     const { loginAPI, navigation } = this.props;
     const { username, password } = this.state;
-    const res = await loginAPI(username, password);
-    if (res.success) {
-      const accessToken = res.result.data.token;
-      Auth.deleteAccessToken();
-      await Auth.setAccessToken(accessToken);
-      console.log(Auth.getAccessToken());
-      navigation.navigate('Home');
-    } else if (!res.success) {
-      console.log(res.error);
-      if (res.error.error.code === 40402) {
-        Alert.alert('Tên đăng nhập không hợp lệ!');
-      } else if (res.error.error.code === 40001) {
-        Alert.alert('Sai mật khẩu!');
-      }
-    }
+    this.setState({ loading: true });
+    await loginAPI(username, password);
+    this.setState({ loading: false });
+    navigation.navigate('Home');
+    // } else if (!res.success) {
+    //   if (res.error.message.toString() === 'Network request failed') {
+    //     Alert.alert('Lỗi', 'Lỗi kết nối!');
+    //   } else if (res.error.data.error.code === 40001) {
+    //     Alert.alert('Lỗi', 'Tên đăng nhập không hợp lệ!');
+    //   } else if (res.error.data.error.code === 40002) {
+    //     Alert.alert('Lỗi', 'Sai mật khẩu!');
+    //   }
+    //   this.setState({ loading: false });
+    // }
   }
 
   onChangeText = (name, text) => {
@@ -83,12 +81,12 @@ class Login extends Component {
             name="username"
             value={username}
             onChangeText={this.onChangeText}
-            isSecureText={false}
           />
           <InputField
             placeholder="Mật khẩu..."
             name="password"
             value={password}
+            // isSecureText
             onChangeText={this.onChangeText}
           />
         </View>
@@ -108,10 +106,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  payload: state.auth.payload,
-  // already get payload from redux
-  // every time redux change state, new data will be pass to component through this prop
   currentComponent: state.auth.currentComponent,
+  loggedIn: state.auth.loggedIn,
 });
 
 const mapDispatchToProps = {

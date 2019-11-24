@@ -15,6 +15,7 @@ class InputField extends Component {
           placeholder={placeholder}
           name={name}
           value={value}
+          autoCapitalize="none"
           onChangeText={(text) => onChangeText(name, text)}
           secureTextEntry={isSecureText}
         />

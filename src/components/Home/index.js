@@ -4,7 +4,10 @@ import {
 } from 'react-native';
 import Headbar from 'components/Common/Headbar';
 import Searchbar from 'components/Common/Searchbar';
+import { withNavigation } from 'react-navigation';
+import Auth from 'utils/auth';
 import styles from './index.styles';
+
 
 class Home extends Component {
   constructor(props) {
@@ -33,9 +36,16 @@ class Home extends Component {
     };
   }
 
+  onClick = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Auth');
+  }
+
   render() {
     const { navigation } = this.props;
     const { data } = this.state;
+
+    console.log(Auth.getAccessToken());
     return (
       <View style={styles.container}>
         <Headbar title="TRANG CHỦ" />
@@ -45,11 +55,11 @@ class Home extends Component {
           style={styles.listContainer}
           data={data}
           extraData={data}
-          keyExtractor={(item) => item.toString()}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.cardList}>
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={() => this.onClick()}
               >
                 <ImageBackground
                   source={{ uri: item.dataURI }}
@@ -85,4 +95,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withNavigation(Home);

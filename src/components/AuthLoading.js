@@ -5,7 +5,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+import { loadAuth } from 'datalayer/actions/auth.action';
 
 const styles = StyleSheet.create({
   screen: {
@@ -16,11 +17,16 @@ const styles = StyleSheet.create({
 });
 
 class AuthLoading extends React.Component {
-  async componentDidMount() {
-    const { navigation } = this.props;
-    const userToken = await AsyncStorage.getItem('userToken');
+  componentDidMount() {
+    const { loadAuth } = this.props;
+    loadAuth();
+  }
 
-    navigation.navigate(userToken ? 'App' : 'Auth');
+  componentDidUpdate(prevProps) {
+    const { navigation, loggedIn } = this.props;
+    if (prevProps.loggedIn !== loggedIn) {
+      navigation.navigate(loggedIn ? 'App' : 'Auth');
+    }
   }
 
   render() {
@@ -33,4 +39,12 @@ class AuthLoading extends React.Component {
   }
 }
 
-export default AuthLoading;
+const mapStateToProps = (state) => ({
+  loggedIn: state.auth.loggedIn,
+});
+
+const mapDispatchToProps = {
+  loadAuth,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthLoading);

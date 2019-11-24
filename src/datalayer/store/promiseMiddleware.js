@@ -33,13 +33,6 @@ export default ({ dispatch, getState }) => (next) => (action) => {
     const response = { success: true, result };
     return response;
   }).catch((error) => {
-    // // Dispatch failureAction
-    // next({
-    //   type: failureAction,
-    //   payload: error,
-    //   extraPayload: rest.payload,
-    // });
-
     const response = { success: false, error };
     return response;
   });
