@@ -11,7 +11,6 @@ export const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case authAction.LOAD_AUTH_SUCCESS: {
-      console.log({ loaded: action.payload });
       return {
         ...state,
         loggedIn: Auth.isAuth(),

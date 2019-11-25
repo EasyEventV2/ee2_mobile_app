@@ -13,7 +13,7 @@ export const changeToSignupComponent = () => ({
 
 export const loginAPI = (username, password) => ({
   type: authAction.ON_LOGIN,
-  promise: post(`${localConfig.apiUrlNghiaTan}/users/login`, {
+  promise: post(`${localConfig.apiUrlSamsung}/users/login`, {
     username,
     password,
   }),
