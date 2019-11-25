@@ -42,7 +42,6 @@ export default (state = INITIAL_STATE, action) => {
 
     case authAction.ON_LOGOUT: {
       Auth.deleteAuth();
-      NavigationWithoutProps.navigate('Auth');
       return {
         ...state,
         loggedIn: false,

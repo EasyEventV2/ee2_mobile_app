@@ -1,5 +1,4 @@
 import Auth from 'utils/auth';
-import NavigationWithoutProps from 'components/NavigationWithoutProps';
 
 export default ({ dispatch, getState }) => (next) => (action) => {
   // If there's no promise, call next step

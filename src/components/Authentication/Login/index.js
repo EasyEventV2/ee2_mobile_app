@@ -21,9 +21,10 @@ class Login extends Component {
 
   onLogin = async () => {
     const { loginAPI } = this.props;
-    const { username, password } = this.state;
+    // const { username, password } = this.state;
     this.setState({ loading: true });
-    const res = await loginAPI(username, password);
+    // const res = await loginAPI(username, password);
+    const res = await loginAPI('nam001', 'admin123456');
     if (!res.success) {
       Dialog.show(res.error);
       this.setState({ loading: false });

@@ -13,7 +13,7 @@ export const changeToSignupComponent = () => ({
 
 export const loginAPI = (username, password) => ({
   type: authAction.ON_LOGIN,
-  promise: post(`${localConfig.apiUrlSamsung}/users/login`, {
+  promise: post(`${localConfig.apiUrlDuyTan}/auth/login`, {
     username,
     password,
   }),
@@ -22,4 +22,8 @@ export const loginAPI = (username, password) => ({
 export const loadAuth = () => ({
   type: authAction.LOAD_AUTH,
   promise: Auth.updateAccessToken(),
+});
+
+export const logoutDispatch = () => ({
+  type: authAction.ON_LOGOUT,
 });
