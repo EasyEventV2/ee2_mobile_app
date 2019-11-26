@@ -3,6 +3,9 @@ import {
   StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import store from 'datalayer/store';
+import { logoutDispatch } from 'datalayer/actions/auth.action';
+import NavigationWithoutProps from './NavigationWithoutProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,13 +17,18 @@ const styles = StyleSheet.create({
 });
 
 class DrawerComponent extends Component {
+  componentDidUpdate(prevProps) {
+    const { loggedIn } = this.props;
+    if (prevProps.loggedIn !== loggedIn) {
+      NavigationWithoutProps.navigate('Auth');
+    }
+  }
+
   render() {
-    const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>NHAU NHAU!</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-          <Text>Go to Settings Page</Text>
+        <TouchableOpacity onPress={() => store.dispatch(logoutDispatch())}>
+          <Text>ĐĂNG XUẤT</Text>
         </TouchableOpacity>
       </View>
     );

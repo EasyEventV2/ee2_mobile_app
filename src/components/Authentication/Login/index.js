@@ -7,7 +7,6 @@ import { changeToSignupComponent, loginAPI } from 'datalayer/actions/auth.action
 import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import Dialog from 'utils/errorDialog';
-import NavigationWithoutProps from 'components/NavigationWithoutProps';
 import styles from './index.styles';
 
 class Login extends Component {
@@ -18,17 +17,6 @@ class Login extends Component {
       password: '',
       loading: false,
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { loggedIn } = this.props;
-    console.log(`Login prev: ${prevProps.loggedIn}`);
-    console.log(`Login now: ${loggedIn}`);
-    if (prevProps.loggedIn !== loggedIn) {
-      if (loggedIn) {
-        NavigationWithoutProps.navigate('Home');
-      }
-    }
   }
 
   onLogin = () => {

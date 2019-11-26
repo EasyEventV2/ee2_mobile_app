@@ -19,9 +19,14 @@ export const loginAPI = (username, password) => ({
   }),
 });
 
-export const loadAuth = () => ({
-  type: authAction.LOAD_AUTH,
+export const loadAccessToken = () => ({
+  type: authAction.LOAD_ACCESSTOKEN,
   promise: Auth.updateAccessToken(),
+});
+
+export const loadUserId = () => ({
+  type: authAction.LOAD_USERID,
+  promise: Auth.updateUserId(),
 });
 
 export const logoutDispatch = () => ({

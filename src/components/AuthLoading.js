@@ -6,30 +6,22 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadAuth } from 'datalayer/actions/auth.action';
-import NavigationWithoutProps from './NavigationWithoutProps';
+import { loadAccessToken, loadUserId } from 'datalayer/actions/auth.action';
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
 });
 
 class AuthLoading extends React.Component {
   componentDidMount() {
-    const { loadAuth } = this.props;
-    loadAuth();
-  }
-
-  componentDidUpdate(prevProps) {
-    const { loggedIn } = this.props;
-    console.log(`Auth prev: ${prevProps.loggedIn}`);
-    console.log(`Auth now: ${loggedIn}`);
-    if (prevProps.loggedIn !== loggedIn) {
-      NavigationWithoutProps.navigate(loggedIn ? 'App' : 'Auth');
-    }
+    const { loadAccessToken, loadUserId } = this.props;
+    loadAccessToken()
+      .then(() => loadUserId());
   }
 
   render() {
@@ -47,7 +39,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadAuth,
+  loadAccessToken,
+  loadUserId,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoading);

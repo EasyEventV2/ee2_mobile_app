@@ -7,12 +7,12 @@ import { logoutDispatch } from 'datalayer/actions/auth.action';
 
 class ErrorDialog extends Component {
   show = (error) => {
-    if (error.error.message === 'Network request failed') {
-    // if (error.message === 'Network request failed') {
+    // if (error.error.message === 'Network request failed') {
+    if (error.message === 'Network request failed') {
       Alert.alert('Lỗi', 'Lỗi kết nối!');
     } else {
-      // const errorCode = error.data.error.code;
-      const errorCode = error.error.code;
+      const errorCode = error.data.error.code;
+      // const errorCode = error.error.code;
       console.log(`errorCode: ${errorCode}`);
       switch (errorCode) {
         case 40001:

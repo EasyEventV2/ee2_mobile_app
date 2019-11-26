@@ -7,24 +7,34 @@
  */
 
 import React, { Component } from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
-import store from 'datalayer/store';
+import { connect } from 'react-redux';
 import SwitchStack from 'components/Navigator';
 import NavigationWithoutProps from 'components/NavigationWithoutProps';
 
 console.disableYellowBox = true;
 
 class App extends Component {
+  componentDidUpdate(prevProps) {
+    const { loggedIn } = this.props;
+    if (prevProps.loggedIn !== loggedIn) {
+      NavigationWithoutProps.navigate(loggedIn ? 'App' : 'Auth');
+    }
+  }
+
   render() {
     return (
-      <ReduxProvider store={store}>
-        <SwitchStack ref={navigatorRef => {
-          NavigationWithoutProps.setTopLevelNavigator(navigatorRef);
-        }}
-        />
-      </ReduxProvider>
+      <SwitchStack ref={navigatorRef => {
+        NavigationWithoutProps.setTopLevelNavigator(navigatorRef);
+      }}
+      />
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  loggedIn: state.auth.loggedIn,
+});
+
+const mapDispatchToProps = null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

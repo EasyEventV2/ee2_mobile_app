@@ -22,7 +22,7 @@ class Authentication {
   }
 
   isAuth() {
-    return !!this.accessToken;
+    return (!!this.accessToken && !!this.userId);
   }
 
   async updateAccessToken() {
