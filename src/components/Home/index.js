@@ -1,18 +1,26 @@
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import {
   Text, View, TouchableOpacity, FlatList, ImageBackground,
 } from 'react-native';
 import Headbar from 'components/Common/Headbar';
 import Searchbar from 'components/Common/Searchbar';
-import { withNavigation } from 'react-navigation';
 import Auth from 'utils/auth';
+import Dialog from 'utils/errorDialog';
+import store from 'datalayer/store';
+import { logoutDispatch } from 'datalayer/actions/auth.action';
+import { loadEventsListAPI } from 'datalayer/actions/event.action';
+import { ActivityIndicator } from 'react-native-paper';
+import { connect } from 'react-redux';
+import localConfig from 'configs/local';
+import NavigationWithoutProps from 'components/NavigationWithoutProps';
 import styles from './index.styles';
-
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       data: [
         {
           id: '1',
@@ -36,16 +44,60 @@ class Home extends Component {
     };
   }
 
-  onClick = () => {
-    const { navigation } = this.props;
-    navigation.navigate('Auth');
+  componentDidMount() {
+    // const { loadEventsListAPI } = this.props;
+    // console.log(Auth.getAccessToken());
+    // this.setState({ loading: true });
+    // const res = await loadEventsListAPI();
+    // if (!res.success) {
+    //   console.log(res.error.data);
+    //   Dialog.show(res.error);
+    //   this.setState({ loading: false });
+    // }
+    fetch(`${localConfig.apiUrlDuyTan}/users/5daed75b0e604dd62340ef89/events`,
+      {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${Auth.getAccessToken()}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then(res => res.json())
+      .then(resJSON => {
+        console.log(resJSON);
+        Dialog.show(resJSON);
+      })
+      .catch(error => {
+        console.log(`error: ${error}`);
+        this.setState({ loading: false });
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loggedIn } = this.props;
+    console.log(`Home prev: ${prevProps.loggedIn}`);
+    console.log(`Home now: ${loggedIn}`);
+    if (prevProps.loggedIn !== loggedIn) {
+      NavigationWithoutProps.navigate('Auth');
+    }
   }
 
   render() {
     const { navigation } = this.props;
-    const { data } = this.state;
-
-    console.log(Auth.getAccessToken());
+    const { loading, data } = this.state;
+    if (loading) {
+      return (
+        <View style={{
+          flex: 1,
+          backgroundColor: 'white',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        >
+          <ActivityIndicator />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <Headbar title="TRANG CHỦ" />
@@ -59,7 +111,7 @@ class Home extends Component {
           renderItem={({ item }) => (
             <View style={styles.cardList}>
               <TouchableOpacity
-                onPress={() => this.onClick()}
+                onPress={() => { store.dispatch(logoutDispatch()); }}
               >
                 <ImageBackground
                   source={{ uri: item.dataURI }}
@@ -79,7 +131,7 @@ class Home extends Component {
                         }}
                       >
                         <Text style={styles.checkInText}>
-                          CHECK-IN
+                            CHECK-IN
                         </Text>
                       </TouchableOpacity>
                     </View>
@@ -95,4 +147,14 @@ class Home extends Component {
   }
 }
 
-export default withNavigation(Home);
+const mapStateToProps = (state) => ({
+  list: state.event.list,
+  loggedIn: state.auth.loggedIn,
+});
+
+const mapDispatchToProps = {
+  loadEventsListAPI,
+  logoutDispatch,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

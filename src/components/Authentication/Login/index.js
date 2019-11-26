@@ -7,6 +7,7 @@ import { changeToSignupComponent, loginAPI } from 'datalayer/actions/auth.action
 import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import Dialog from 'utils/errorDialog';
+import NavigationWithoutProps from 'components/NavigationWithoutProps';
 import styles from './index.styles';
 
 class Login extends Component {
@@ -19,16 +20,29 @@ class Login extends Component {
     };
   }
 
-  onLogin = async () => {
+  componentDidUpdate(prevProps) {
+    const { loggedIn } = this.props;
+    console.log(`Login prev: ${prevProps.loggedIn}`);
+    console.log(`Login now: ${loggedIn}`);
+    if (prevProps.loggedIn !== loggedIn) {
+      if (loggedIn) {
+        NavigationWithoutProps.navigate('Home');
+      }
+    }
+  }
+
+  onLogin = () => {
     const { loginAPI } = this.props;
     // const { username, password } = this.state;
     this.setState({ loading: true });
     // const res = await loginAPI(username, password);
-    const res = await loginAPI('nam001', 'admin123456');
-    if (!res.success) {
-      Dialog.show(res.error);
-      this.setState({ loading: false });
-    }
+    loginAPI('nam001', 'admin123456')
+      .then(res => {
+        if (!res.success) {
+          Dialog.show(res.error);
+          this.setState({ loading: false });
+        }
+      });
   }
 
   onChangeText = (name, text) => {

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { loadAuth } from 'datalayer/actions/auth.action';
+import NavigationWithoutProps from './NavigationWithoutProps';
 
 const styles = StyleSheet.create({
   screen: {
@@ -23,9 +24,11 @@ class AuthLoading extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { navigation, loggedIn } = this.props;
+    const { loggedIn } = this.props;
+    console.log(`Auth prev: ${prevProps.loggedIn}`);
+    console.log(`Auth now: ${loggedIn}`);
     if (prevProps.loggedIn !== loggedIn) {
-      navigation.navigate(loggedIn ? 'App' : 'Auth');
+      NavigationWithoutProps.navigate(loggedIn ? 'App' : 'Auth');
     }
   }
 

@@ -1,6 +1,5 @@
 import { authAction } from 'constants/actions';
 import Auth from 'utils/auth';
-import NavigationWithoutProps from 'components/NavigationWithoutProps';
 
 // This state is for changing Login and Signup components in Authentication screen
 // + checking if user has logged in yet?
@@ -33,7 +32,6 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case authAction.ON_LOGIN_SUCCESS: {
-      NavigationWithoutProps.navigate('Home');
       return {
         ...state,
         loggedIn: true,

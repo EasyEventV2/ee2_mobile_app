@@ -17,7 +17,11 @@ const composedEnhancer = composeWithDevTools(
   ...enhancers,
 );
 
-const initStore = () => createStore(rootReducer, {}, composedEnhancer);
+const initStore = () => createStore(
+  rootReducer,
+  {},
+  composedEnhancer,
+);
 
 const store = initStore();
 

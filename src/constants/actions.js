@@ -17,3 +17,8 @@ export const authAction = {
   ON_LOGOUT: 'ON_LOGOUT',
   ON_LOGOUT_SUCCESS: 'ON_LOGOUT_SUCCESS',
 };
+
+export const eventAction = {
+  LOAD_EVENTS_LIST: 'LOAD_EVENTS_LIST',
+  LOAD_EVENTS_LIST_SUCCESS: 'LOAD_EVENTS_LIST_SUCCESS',
+};
