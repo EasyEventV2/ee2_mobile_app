@@ -1,5 +1,5 @@
 const localConfig = {
-  apiUrlDuyTan: 'http://192.168.1.5:3003',
+  apiUrl: 'http://127.0.0.1:3003',
 };
 
 export default localConfig;

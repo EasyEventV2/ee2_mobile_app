@@ -10,13 +10,7 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case authAction.LOAD_ACCESSTOKEN_SUCCESS: {
-      return {
-        ...state,
-      };
-    }
-
-    case authAction.LOAD_USERID_SUCCESS: {
+    case authAction.LOAD_AUTH_SUCCESS: {
       return {
         ...state,
         loggedIn: Auth.isAuth(),

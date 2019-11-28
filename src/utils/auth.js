@@ -25,16 +25,11 @@ class Authentication {
     return (!!this.accessToken && !!this.userId);
   }
 
-  async updateAccessToken() {
+  async updateAuth() {
     const token = await getItem(KEYS.ACCESS_TOKEN);
     this.accessToken = token;
-    return token;
-  }
-
-  async updateUserId() {
     const userId = await getItem(KEYS.USER_ID);
     this.userId = userId;
-    return userId;
   }
 
   deleteAuth() {

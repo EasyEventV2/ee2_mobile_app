@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SwitchStack from 'components/Navigator';
-import NavigationWithoutProps from 'components/NavigationWithoutProps';
+import NavigationWithoutProps from 'utils/navigationWithoutProps';
 
 console.disableYellowBox = true;
 

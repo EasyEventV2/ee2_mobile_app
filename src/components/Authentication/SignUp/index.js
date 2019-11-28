@@ -3,9 +3,9 @@ import {
   Text, View, TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changeToLoginComponent } from 'datalayer/actions/auth.action';
-import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
+import logoPath from 'assets/images/logo-fit-512x354.png';
+import { changeToLoginComponentDispatch } from 'datalayer/actions/auth.action';
 import styles from './index.styles';
 
 class SignUp extends Component {
@@ -47,7 +47,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { changeToLoginComponent } = this.props;
+    const { changeToLoginComponentDispatch } = this.props;
     const {
       fullname, email, username, password, confirmPassword,
     } = this.state;
@@ -98,7 +98,7 @@ class SignUp extends Component {
           {this.renderSignupButton()}
           <TouchableOpacity
             style={styles.subButton}
-            onPress={() => changeToLoginComponent()}
+            onPress={() => changeToLoginComponentDispatch()}
           >
             <Text style={{ color: 'black' }}>Đã có tài khoản? Đăng nhập tại đây</Text>
           </TouchableOpacity>
@@ -109,7 +109,7 @@ class SignUp extends Component {
 }
 
 const mapDispatchToProps = {
-  changeToLoginComponent,
+  changeToLoginComponentDispatch,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

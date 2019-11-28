@@ -3,10 +3,10 @@ import {
   Text, View, TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changeToSignupComponent, loginAPI } from 'datalayer/actions/auth.action';
-import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
 import Dialog from 'utils/errorDialog';
+import logoPath from 'assets/images/logo-fit-512x354.png';
+import { changeToSignupComponentDispatch, loginDispatch } from 'datalayer/actions/auth.action';
 import styles from './index.styles';
 
 class Login extends Component {
@@ -19,12 +19,11 @@ class Login extends Component {
     };
   }
 
-  onLogin = () => {
-    const { loginAPI } = this.props;
-    // const { username, password } = this.state;
+  login = () => {
+    const { loginDispatch } = this.props;
+    const { username, password } = this.state;
     this.setState({ loading: true });
-    // const res = await loginAPI(username, password);
-    loginAPI('nam001', 'admin123456')
+    loginDispatch(username, password)
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
@@ -44,7 +43,7 @@ class Login extends Component {
         <View>
           <TouchableOpacity
             style={styles.mainButton}
-            onPress={this.onLogin}
+            onPress={this.login}
           >
             <Text style={styles.text}>ĐĂNG NHẬP</Text>
           </TouchableOpacity>
@@ -59,7 +58,7 @@ class Login extends Component {
   }
 
   render() {
-    const { changeToSignupComponent } = this.props;
+    const { changeToSignupComponentDispatch } = this.props;
     const { username, password } = this.state;
     return (
       <View style={styles.container}>
@@ -90,7 +89,7 @@ class Login extends Component {
           {this.renderLoginButton()}
           <TouchableOpacity
             style={styles.subButton}
-            onPress={() => changeToSignupComponent()}
+            onPress={() => changeToSignupComponentDispatch()}
           >
             <Text style={{ color: 'black' }}>Không có tài khoản? Tạo mới ở đây</Text>
           </TouchableOpacity>
@@ -106,8 +105,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  changeToSignupComponent,
-  loginAPI,
+  changeToSignupComponentDispatch,
+  loginDispatch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

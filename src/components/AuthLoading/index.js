@@ -2,26 +2,16 @@ import React from 'react';
 import {
   ActivityIndicator,
   StatusBar,
-  StyleSheet,
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadAccessToken, loadUserId } from 'datalayer/actions/auth.action';
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-});
+import { loadAuthDispatch } from 'datalayer/actions/auth.action';
+import styles from './index.styles';
 
 class AuthLoading extends React.Component {
   componentDidMount() {
-    const { loadAccessToken, loadUserId } = this.props;
-    loadAccessToken()
-      .then(() => loadUserId());
+    const { loadAuthDispatch } = this.props;
+    loadAuthDispatch();
   }
 
   render() {
@@ -39,8 +29,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadAccessToken,
-  loadUserId,
+  loadAuthDispatch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoading);

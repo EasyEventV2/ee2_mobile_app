@@ -1,16 +1,22 @@
 /* eslint-disable no-underscore-dangle */
+
+/* Packages */
 import React, { Component } from 'react';
 import {
   Text, View, TouchableOpacity, FlatList, ImageBackground, ActivityIndicator,
 } from 'react-native';
+import { connect } from 'react-redux';
+/* Components */
 import Headbar from 'components/Common/Headbar';
 import Searchbar from 'components/Common/Searchbar';
+/* Consts - Utils */
 import Auth from 'utils/auth';
 import Dialog from 'utils/errorDialog';
-import store from 'datalayer/store';
+import NavigationWithoutProps from 'utils/navigationWithoutProps';
+/* Redux */
 import { logoutDispatch } from 'datalayer/actions/auth.action';
-import { loadEventsListAPI } from 'datalayer/actions/event.action';
-import { connect } from 'react-redux';
+import { loadEventsListDispatch } from 'datalayer/actions/event.action';
+/* Styles */
 import styles from './index.styles';
 
 class Home extends Component {
@@ -22,10 +28,10 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { loadEventsListAPI } = this.props;
-    console.log(Auth.getUserId());
+    const { loadEventsListDispatch } = this.props;
+    const userId = Auth.getUserId();
     this.setState({ loading: true });
-    loadEventsListAPI(Auth.getUserId())
+    loadEventsListDispatch(userId)
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
@@ -34,17 +40,20 @@ class Home extends Component {
       });
   }
 
+  goToEventDetail = () => {
+
+  }
+
+  goToQR = () => {
+    NavigationWithoutProps.navigate('QR');
+  }
+
   render() {
-    const { navigation, data } = this.props;
+    const { data } = this.props;
     const { loading } = this.state;
     if (loading) {
       return (
-        <View style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        >
+        <View style={styles.loadingContainer}>
           <ActivityIndicator />
         </View>
       );
@@ -62,7 +71,7 @@ class Home extends Component {
           renderItem={({ item }) => (
             <View style={styles.cardList}>
               <TouchableOpacity
-                onPress={() => { store.dispatch(logoutDispatch()); }}
+                onPress={this.goToEventDetail}
               >
                 <ImageBackground
                   source={{ uri: 'https://cdn.flickeringmyth.com/wp-content/uploads/2018/06/Ant-Man-and-the-Wasp-intl-poster-2-600x857.jpg' }}
@@ -77,9 +86,7 @@ class Home extends Component {
                     <View style={styles.cardFooterLower}>
                       <TouchableOpacity
                         style={styles.checkInButton}
-                        onPress={() => {
-                          navigation.navigate('QR');
-                        }}
+                        onPress={this.goToQR}
                       >
                         <Text style={styles.checkInText}>
                             CHECK-IN
@@ -104,7 +111,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadEventsListAPI,
+  loadEventsListDispatch,
   logoutDispatch,
 };
 

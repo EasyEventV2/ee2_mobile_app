@@ -15,7 +15,7 @@ import Unaccepted from 'components/Home/EventDetail/Guest/Unaccepted';
 import CheckedIn from 'components/Home/EventDetail/Guest/CheckedIn';
 import Settings from 'components/Settings';
 import AuthLoading from 'components/AuthLoading';
-import DrawerComponent from 'components/DrawerComponent';
+import Drawer from 'components/Drawer';
 
 const GuestStack = createMaterialTopTabNavigator({
   Unaccepted: {
@@ -48,7 +48,7 @@ const DrawerStack = createDrawerNavigator({
     screen: Home,
   },
 }, {
-  contentComponent: () => <DrawerComponent />,
+  contentComponent: () => <Drawer />,
   drawerWidth: 230,
 });
 

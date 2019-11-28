@@ -7,11 +7,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import styles from './index.styles';
 
 class Headbar extends Component {
+  openDrawer = () => {
+    const { navigation } = this.props;
+    navigation.openDrawer();
+  }
+
   render() {
-    const { navigation, title } = this.props;
+    const { title } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+        <TouchableOpacity onPress={this.openDrawer}>
           <MaterialCommunityIcons name="menu" size={25} color="black" />
         </TouchableOpacity>
         <View style={styles.titleContainer}>
