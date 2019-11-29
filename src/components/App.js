@@ -1,14 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SwitchStack from 'components/Navigator';
+import withProvider from 'components/HOC/withProvider';
 import NavigationWithoutProps from 'utils/navigationWithoutProps';
 
 console.disableYellowBox = true;
@@ -37,4 +30,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = null;
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withProvider(
+  connect(mapStateToProps, mapDispatchToProps)(App)
+);

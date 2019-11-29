@@ -1,8 +1,4 @@
-/**
- * @format
- */
-
 import { AppRegistry } from 'react-native';
-import ProviderWrapper from 'components/ProviderWrapper';
+import App from 'components/App';
 
-AppRegistry.registerComponent('ee2_mobile_app', () => ProviderWrapper);
+AppRegistry.registerComponent('ee2_mobile_app', () => App);

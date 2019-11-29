@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import store from 'datalayer/store';
-import App from 'components/App';
 
-export default class ProviderWrapper extends Component {
-  render() {
+const withProvider = (WrappedComponent) => {
+  function Wrapper() {
     return (
       <ReduxProvider store={store}>
-        <App />
+        <WrappedComponent />
       </ReduxProvider>
     );
   }
-}
+
+  return Wrapper;
+};
+
+export default withProvider;
