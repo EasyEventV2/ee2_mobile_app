@@ -6,11 +6,11 @@ class Authentication {
     this.userId = null;
   }
 
-  async setAuth(token, userId) {
-    await setItem(KEYS.ACCESS_TOKEN, token);
-    await setItem(KEYS.USER_ID, userId);
+  setAuth(token, userId) {
     this.accessToken = token;
     this.userId = userId;
+    setItem(KEYS.ACCESS_TOKEN, token);
+    setItem(KEYS.USER_ID, userId);
   }
 
   getAccessToken() {

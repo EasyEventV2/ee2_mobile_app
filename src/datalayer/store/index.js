@@ -5,11 +5,13 @@ import rootReducer from 'datalayer/reducers/root.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import promiseMiddleware from './promiseMiddleware';
+import authMiddleware from './authMiddleware';
 
 const enhancers = [];
 const middlewares = [
   thunkMiddleware,
   promiseMiddleware,
+  authMiddleware,
 ];
 
 const composedEnhancer = composeWithDevTools(

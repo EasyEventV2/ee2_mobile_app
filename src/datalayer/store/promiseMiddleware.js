@@ -1,5 +1,3 @@
-import Auth from 'utils/auth';
-
 export default ({ dispatch, getState }) => (next) => (action) => {
   // If there's no promise, call next step
   if (!action.promise) {
@@ -26,23 +24,11 @@ export default ({ dispatch, getState }) => (next) => (action) => {
 
   return p.then((result) => {
     // Dispatch successAction
-    // If we are dispatching Login
-    if (successAction === 'ON_LOGIN_SUCCESS') {
-      Auth.setAuth(result.data.token, result.data.userId)
-        .then(() => {
-          next({
-            type: successAction,
-            payload: result,
-            extraPayload: rest.payload,
-          });
-        });
-    } else {
-      next({
-        type: successAction,
-        payload: result,
-        extraPayload: rest.payload,
-      });
-    }
+    next({
+      type: successAction,
+      payload: result,
+      extraPayload: rest.payload,
+    });
 
     const response = { success: true, result };
     return response;
