@@ -3,7 +3,7 @@
 /* Packages */
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, FlatList, ImageBackground, ActivityIndicator,
+  View, FlatList, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 /* Components */
@@ -16,6 +16,7 @@ import NavigationWithoutProps from 'utils/navigationWithoutProps';
 /* Redux */
 import { logoutDispatch } from 'datalayer/actions/auth.action';
 import { loadEventsListDispatch } from 'datalayer/actions/event.action';
+import EventCard from './EventCard';
 /* Styles */
 import styles from './index.styles';
 
@@ -50,6 +51,7 @@ class Home extends Component {
 
   render() {
     const { data } = this.props;
+    const { itemsList } = data;
     const { loading } = this.state;
     if (loading) {
       return (
@@ -65,37 +67,12 @@ class Home extends Component {
 
         <FlatList
           style={styles.listContainer}
-          data={data}
-          extraData={data}
+          data={itemsList}
+          extraData={itemsList}
           keyExtractor={(item) => item.event._id}
           renderItem={({ item }) => (
             <View style={styles.cardList}>
-              <TouchableOpacity
-                onPress={this.goToEventDetail}
-              >
-                <ImageBackground
-                  source={{ uri: 'https://cdn.flickeringmyth.com/wp-content/uploads/2018/06/Ant-Man-and-the-Wasp-intl-poster-2-600x857.jpg' }}
-                  style={styles.imageBackground}
-                >
-                  <View style={styles.cardFooter}>
-                    <View style={styles.cardFooterUpper}>
-                      <Text style={styles.cardText}>
-                        {item.event.description}
-                      </Text>
-                    </View>
-                    <View style={styles.cardFooterLower}>
-                      <TouchableOpacity
-                        style={styles.checkInButton}
-                        onPress={this.goToQR}
-                      >
-                        <Text style={styles.checkInText}>
-                            CHECK-IN
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
+              <EventCard item={item} />
             </View>
           )}
           numColumns={1}
