@@ -1,12 +1,22 @@
 import { authAction } from 'constants/actions';
+import Auth from 'utils/auth';
 
 // This state is for changing Login and Signup components in Authentication screen
+// + checking if user has logged in yet?
 export const INITIAL_STATE = {
   currentComponent: 'Login',
+  loggedIn: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case authAction.LOAD_AUTH_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: Auth.isAuth(),
+      };
+    }
+
     case authAction.IS_LOGIN_COMPONENT: {
       return {
         ...state,
@@ -18,6 +28,21 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentComponent: 'Signup',
+      };
+    }
+
+    case authAction.ON_LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loggedIn: true,
+      };
+    }
+
+    case authAction.ON_LOGOUT: {
+      Auth.deleteAuth();
+      return {
+        ...state,
+        loggedIn: false,
       };
     }
 

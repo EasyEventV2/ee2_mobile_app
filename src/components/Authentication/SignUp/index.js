@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, Image, ActivityIndicator,
+  Text, View, TouchableOpacity, Image, ActivityIndicator, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changeToLoginComponent } from 'datalayer/actions/auth.action';
-import logoPath from 'assets/images/logo-fit-512x354.png';
 import InputField from 'components/Authentication/InputField';
+import { SCREEN_HEIGHT } from 'constants/sizes';
+import logoPath from 'assets/images/logo-fit-512x354.png';
+import { changeToLoginComponentDispatch } from 'datalayer/actions/auth.action';
 import styles from './index.styles';
 
 class SignUp extends Component {
@@ -14,6 +15,7 @@ class SignUp extends Component {
     this.state = {
       fullname: '',
       email: '',
+      username: '',
       password: '',
       confirmPassword: '',
       loading: false,
@@ -33,7 +35,7 @@ class SignUp extends Component {
             style={styles.mainButton}
             onPress={this.onSignup}
           >
-            <Text style={styles.text}>SIGN UP</Text>
+            <Text style={styles.text}>ĐĂNG KÝ</Text>
           </TouchableOpacity>
         </View>
       );
@@ -46,12 +48,12 @@ class SignUp extends Component {
   }
 
   render() {
-    const { changeToLoginComponent } = this.props;
+    const { changeToLoginComponentDispatch } = this.props;
     const {
-      fullname, email, password, confirmPassword,
+      fullname, email, username, password, confirmPassword,
     } = this.state;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.imgContainer}>
           <Image
             style={styles.imgLogo}
@@ -61,28 +63,39 @@ class SignUp extends Component {
 
         <View style={styles.formContainer}>
           <InputField
-            placeholder="Fullname..."
+            placeholder="Tên đầy đủ..."
             value={fullname}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Email..."
             value={email}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
-            placeholder="Password..."
+            placeholder="Tên đăng nhập..."
+            value={username}
+            onChangeText={this.onChangeText}
+            isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
+          />
+          <InputField
+            placeholder="Mật khẩu..."
             value={password}
             onChangeText={this.onChangeText}
             isSecureText
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
-            placeholder="Confirm password..."
+            placeholder="Nhập lại mật khẩu..."
             value={confirmPassword}
             onChangeText={this.onChangeText}
             isSecureText
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
 
         </View>
@@ -91,18 +104,18 @@ class SignUp extends Component {
           {this.renderSignupButton()}
           <TouchableOpacity
             style={styles.subButton}
-            onPress={() => changeToLoginComponent()}
+            onPress={() => changeToLoginComponentDispatch()}
           >
-            <Text style={{ color: 'black' }}>Already have an account? Login here</Text>
+            <Text style={{ color: 'black' }}>Đã có tài khoản? Đăng nhập tại đây</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const mapDispatchToProps = {
-  changeToLoginComponent,
+  changeToLoginComponentDispatch,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

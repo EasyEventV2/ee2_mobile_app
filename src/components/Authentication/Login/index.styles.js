@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { SCREEN_HEIGHT } from 'constants/sizes';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'constants/sizes';
 
 const styles = StyleSheet.create({
   container: {
     height: SCREEN_HEIGHT * 0.95,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
   imgContainer: {
     alignItems: 'center',
@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT * 0.25,
   },
   imgLogo: {
-    width: 150,
-    height: 103,
+    width: SCREEN_WIDTH * 0.36,
+    height: SCREEN_HEIGHT * 0.15,
   },
   text: {
-    fontSize: 15,
+    fontSize: SCREEN_HEIGHT * 0.025,
     color: 'black',
   },
   formContainer: {
