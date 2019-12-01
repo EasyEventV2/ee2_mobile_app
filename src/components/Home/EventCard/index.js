@@ -17,32 +17,38 @@ class EventCard extends Component {
     NavigationWithoutProps.navigate('QR');
   }
 
+  mapNameToColorAndText = (name) => {
+    switch (name) {
+      case 'admin':
+        return {
+          ribbonColor: 'green',
+          ribbonText: 'white',
+        };
+      case 'operator':
+        return {
+          ribbonColor: 'yellow',
+          ribbonText: 'black',
+        };
+      case 'staff':
+        return {
+          ribbonColor: 'orange',
+          ribbonText: 'white',
+        };
+      case 'custom admin':
+        return {
+          ribbonColor: 'white',
+          ribbonText: 'black',
+        };
+      default:
+        return null;
+    }
+  }
+
   render() {
     const { item } = this.props;
     const time = new Date(item.event.start_time);
     const calendarText = moment(time).format('DD/MM/YYYY');
-    let ribbonColor;
-    let ribbonText;
-    switch (item.name) {
-      case 'admin':
-        ribbonColor = 'green';
-        ribbonText = 'white';
-        break;
-      case 'operator':
-        ribbonColor = 'yellow';
-        ribbonText = 'black';
-        break;
-      case 'staff':
-        ribbonColor = 'orange';
-        ribbonText = 'white';
-        break;
-      case 'custom admin':
-        ribbonColor = 'white';
-        ribbonText = 'black';
-        break;
-      default:
-        break;
-    }
+    const { ribbonColor, ribbonText } = this.mapNameToColorAndText(item.name);
     return (
       <TouchableOpacity
         onPress={this.goToEventDetail}
