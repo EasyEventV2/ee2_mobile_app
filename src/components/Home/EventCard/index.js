@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import {
   Text, View, TouchableOpacity, ImageBackground,
 } from 'react-native';
+import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NavigationWithoutProps from 'utils/navigationWithoutProps';
-import CustomFormat from 'utils/customFormat';
 import styles from './index.styles';
 
 class EventCard extends Component {
@@ -20,7 +20,7 @@ class EventCard extends Component {
   render() {
     const { item } = this.props;
     const time = new Date(item.event.start_time);
-    const calendarText = CustomFormat.formatFullDate(time);
+    const calendarText = moment(time).format('DD/MM/YYYY');
     let ribbonColor;
     let ribbonText;
     switch (item.name) {

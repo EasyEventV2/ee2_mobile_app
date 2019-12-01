@@ -1,7 +1,6 @@
 import { authAction } from 'constants/actions';
 import { post } from 'utils/request';
 import Auth from 'utils/auth';
-import localConfig from 'configs/local';
 
 export const changeToLoginComponentDispatch = () => ({
   type: authAction.IS_LOGIN_COMPONENT,
@@ -13,7 +12,7 @@ export const changeToSignupComponentDispatch = () => ({
 
 export const loginDispatch = (username, password) => ({
   type: authAction.ON_LOGIN,
-  promise: post(`${localConfig.apiUrl}/auth/login`, {
+  promise: post('/auth/login', {
     username,
     password,
   }),

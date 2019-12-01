@@ -11,7 +11,7 @@ export default ({ dispatch, getState }) => (next) => (action) => {
 
   const beginAction = type;
   const successAction = `${type}_SUCCESS`;
-  // const failureAction = `${type}_FAILURE`;
+  const failureAction = `${type}_FAILURE`;
 
   // Pass beginAction to the next step, except promise
   next({ type: beginAction, ...rest });
@@ -33,6 +33,12 @@ export default ({ dispatch, getState }) => (next) => (action) => {
     const response = { success: true, result };
     return response;
   }).catch((error) => {
+    next({
+      type: failureAction,
+      payload: error,
+      extraPayload: rest.payload,
+    });
+
     const response = { success: false, error };
     return response;
   });

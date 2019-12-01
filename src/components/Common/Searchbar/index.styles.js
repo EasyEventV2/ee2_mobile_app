@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   },
   magnifierButton: {
     padding: SCREEN_WIDTH * 0.044,
-    // height: SCREEN_HEIGHT * 0.8,
     borderWidth: 1,
   },
 });

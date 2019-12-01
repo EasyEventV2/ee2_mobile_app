@@ -1,7 +1,6 @@
 import { eventAction } from 'constants/actions';
 
-// This state is for changing Login and Signup components in Authentication screen
-// + checking if user has logged in yet?
+// This state is for getting events list from database
 export const INITIAL_STATE = {
   data: [],
 };
