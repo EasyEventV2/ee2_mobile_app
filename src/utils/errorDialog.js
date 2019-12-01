@@ -8,6 +8,7 @@ class ErrorDialog {
   show = (error) => {
     if (error.message === 'Network request failed') {
       Alert.alert('Lỗi', 'Lỗi kết nối!');
+      store.dispatch(logoutDispatch());
     } else {
       const errorCode = error.data.error.code;
       switch (errorCode) {

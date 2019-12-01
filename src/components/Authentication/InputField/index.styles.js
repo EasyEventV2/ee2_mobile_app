@@ -1,9 +1,15 @@
 import { StyleSheet } from 'react-native';
+import { SCREEN_HEIGHT } from 'constants/sizes';
 
 const styles = StyleSheet.create({
   inputField: {
-    // borderWidth: 1,
-    justifyContent: 'space-between',
+    backgroundColor: '#ddd',
+    height: SCREEN_HEIGHT * 0.1,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  inputText: {
+    fontSize: SCREEN_HEIGHT * 0.03,
   },
 });
 

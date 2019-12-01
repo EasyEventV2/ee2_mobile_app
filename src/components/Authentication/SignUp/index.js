@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, Image, ActivityIndicator,
+  Text, View, TouchableOpacity, Image, ActivityIndicator, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import InputField from 'components/Authentication/InputField';
+import { SCREEN_HEIGHT } from 'constants/sizes';
 import logoPath from 'assets/images/logo-fit-512x354.png';
 import { changeToLoginComponentDispatch } from 'datalayer/actions/auth.action';
 import styles from './index.styles';
@@ -52,7 +53,7 @@ class SignUp extends Component {
       fullname, email, username, password, confirmPassword,
     } = this.state;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.imgContainer}>
           <Image
             style={styles.imgLogo}
@@ -66,30 +67,35 @@ class SignUp extends Component {
             value={fullname}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Email..."
             value={email}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Tên đăng nhập..."
             value={username}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Mật khẩu..."
             value={password}
             onChangeText={this.onChangeText}
             isSecureText
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Nhập lại mật khẩu..."
             value={confirmPassword}
             onChangeText={this.onChangeText}
             isSecureText
+            marginTop={SCREEN_HEIGHT * 0.05}
           />
 
         </View>
@@ -103,7 +109,7 @@ class SignUp extends Component {
             <Text style={{ color: 'black' }}>Đã có tài khoản? Đăng nhập tại đây</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

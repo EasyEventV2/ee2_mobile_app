@@ -8,9 +8,16 @@ class InputField extends Component {
   render() {
     const {
       placeholder, name, value, onChangeText, isSecureText,
+      marginTop, marginBottom, marginLeft, marginRight,
     } = this.props;
     return (
-      <View style={styles.inputField}>
+      <View style={[styles.inputField, {
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft,
+      }]}
+      >
         <TextInput
           placeholder={placeholder}
           name={name}
@@ -18,6 +25,7 @@ class InputField extends Component {
           autoCapitalize="none"
           onChangeText={(text) => onChangeText(name, text)}
           secureTextEntry={isSecureText}
+          style={styles.inputText}
         />
       </View>
     );

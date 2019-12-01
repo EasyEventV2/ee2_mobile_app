@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: SCREEN_WIDTH * 0.77,
+    height: SCREEN_HEIGHT * 0.085,
     backgroundColor: 'white',
     borderRadius: 5,
     borderWidth: 1,
@@ -18,10 +19,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputText: {
+    height: SCREEN_HEIGHT * 0.085,
     width: SCREEN_WIDTH * 0.7,
   },
   magnifierButton: {
     padding: SCREEN_WIDTH * 0.044,
+    // height: SCREEN_HEIGHT * 0.8,
     borderWidth: 1,
   },
 });
