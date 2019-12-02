@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT * 0.1,
     justifyContent: 'center',
     borderRadius: 10,
+    paddingHorizontal: 5,
   },
   inputText: {
     fontSize: SCREEN_HEIGHT * 0.03,

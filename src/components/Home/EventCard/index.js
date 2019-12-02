@@ -34,7 +34,7 @@ class EventCard extends Component {
           ribbonColor: 'orange',
           ribbonText: 'white',
         };
-      case 'custom admin':
+      case 'custom team':
         return {
           ribbonColor: 'white',
           ribbonText: 'black',
