@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  Text, ScrollView, TouchableOpacity, Image,
 } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+import styles from './index.styles';
 
 class EventDetail extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <Image
+          source={{ uri: 'https://cdn.flickeringmyth.com/wp-content/uploads/2018/06/Ant-Man-and-the-Wasp-intl-poster-2-600x857.jpg' }}
+          style={styles.posterImg}
+        />
         <Text>This is a Event Detail page!</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Guest')}>
           <Text>Go to Guest</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     );
   }
 }

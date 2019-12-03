@@ -18,6 +18,7 @@ class EventCard extends Component {
   }
 
   mapNameToColorAndText = (name) => {
+    console.log(name);
     switch (name) {
       case 'admin':
         return {
@@ -35,6 +36,11 @@ class EventCard extends Component {
           ribbonText: 'white',
         };
       case 'custom team':
+        return {
+          ribbonColor: 'white',
+          ribbonText: 'black',
+        };
+      case 'custom admin':
         return {
           ribbonColor: 'white',
           ribbonText: 'black',
