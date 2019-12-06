@@ -15,6 +15,13 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+    case eventAction.LOAD_EVENT_DETAIL: {
+      return {
+        ...state,
+        eventDetail: {},
+      };
+    }
+
     case eventAction.LOAD_EVENT_DETAIL_SUCCESS: {
       return {
         ...state,
