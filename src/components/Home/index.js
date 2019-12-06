@@ -41,17 +41,13 @@ class Home extends Component {
       });
   }
 
-  goToEventDetail = () => {
-
-  }
-
   goToQR = () => {
     NavigationWithoutProps.navigate('QR');
   }
 
   render() {
-    const { data } = this.props;
-    const { itemsList } = data;
+    const { list } = this.props;
+    const { itemsList } = list;
     const { loading } = this.state;
     if (loading) {
       return (
@@ -83,7 +79,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.event.data,
+  list: state.event.list,
   loggedIn: state.auth.loggedIn,
 });
 
