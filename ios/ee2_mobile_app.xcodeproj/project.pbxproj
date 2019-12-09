@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -65,6 +64,7 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F7F57F6651734446923BDDA2 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC339058EE648088C191DA1 /* FontAwesome5_Solid.ttf */; };
 		FA80CD90AA3B44C8BA5C186E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D114D35C75C1491987605434 /* Feather.ttf */; };
+		2C8642632ED34EA6B8B0FC2D /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9252764081E84D2DB40E0424 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -465,6 +465,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FA998D7D63E1448BB8778F36 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		E32C74FE780C406C9EF0AD2A /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		9252764081E84D2DB40E0424 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -498,6 +500,7 @@
 				9819583A50E64A84B73F084A /* libRNScreens.a in Frameworks */,
 				D3FF6155A83E432F9EF716A0 /* libRNVectorIcons.a in Frameworks */,
 				9FABA3064A5648AA80CAD583 /* libRNCAsyncStorage.a in Frameworks */,
+				2C8642632ED34EA6B8B0FC2D /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +699,7 @@
 				CC976213499A4D7E87AA2666 /* RNScreens.xcodeproj */,
 				23595912F38C4931946FFE2B /* RNVectorIcons.xcodeproj */,
 				9A4427C2FEFE452A9E926758 /* RNCAsyncStorage.xcodeproj */,
+				E32C74FE780C406C9EF0AD2A /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1503,12 +1507,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = ee2_mobile_appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1533,12 +1539,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = ee2_mobile_appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1564,6 +1572,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = ee2_mobile_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1590,6 +1599,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = ee2_mobile_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1623,11 +1633,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "ee2_mobile_app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1661,11 +1673,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "ee2_mobile_app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1698,11 +1712,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "ee2_mobile_app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1735,11 +1751,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-screensios",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
 					"$(SRCROOT)..\node_modules@react-native-community\async-storageios",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "ee2_mobile_app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
