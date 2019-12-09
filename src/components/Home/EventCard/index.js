@@ -6,6 +6,7 @@ import {
 import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NavigationWithoutProps from 'utils/navigationWithoutProps';
+import Rolename from 'constants/rolename';
 import styles from './index.styles';
 
 class EventCard extends Component {
@@ -18,29 +19,28 @@ class EventCard extends Component {
   }
 
   mapNameToColorAndText = (name) => {
-    console.log(name);
     switch (name) {
-      case 'admin':
+      case Rolename.ADMIN:
         return {
           ribbonColor: 'green',
           ribbonText: 'white',
         };
-      case 'operator':
+      case Rolename.OPERATOR:
         return {
           ribbonColor: 'yellow',
           ribbonText: 'black',
         };
-      case 'staff':
+      case Rolename.STAFF:
         return {
           ribbonColor: 'orange',
           ribbonText: 'white',
         };
-      case 'custom team':
+      case Rolename.CUSTOMTEAM:
         return {
           ribbonColor: 'white',
           ribbonText: 'black',
         };
-      case 'custom admin':
+      case Rolename.CUSTOMADMIN:
         return {
           ribbonColor: 'white',
           ribbonText: 'black',
