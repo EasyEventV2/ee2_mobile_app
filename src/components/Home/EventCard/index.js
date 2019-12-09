@@ -9,8 +9,8 @@ import NavigationWithoutProps from 'utils/navigationWithoutProps';
 import styles from './index.styles';
 
 class EventCard extends Component {
-  goToEventDetail = () => {
-
+  goToEventDetail = (id) => {
+    NavigationWithoutProps.navigate('EventDetail', { eventId: id });
   }
 
   goToQR = () => {
@@ -57,7 +57,7 @@ class EventCard extends Component {
     const { ribbonColor, ribbonText } = this.mapNameToColorAndText(item.name);
     return (
       <TouchableOpacity
-        onPress={this.goToEventDetail}
+        onPress={() => this.goToEventDetail(item.event._id)}
         style={styles.cardElement}
       >
         <ImageBackground

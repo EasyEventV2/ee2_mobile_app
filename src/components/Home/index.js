@@ -46,10 +46,6 @@ class Home extends Component {
       });
   }
 
-  goToEventDetail = () => {
-
-  }
-
   goToQR = () => {
     NavigationWithoutProps.navigate('QR');
   }
@@ -104,7 +100,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.event.data,
+  list: state.event.list,
   loggedIn: state.auth.loggedIn,
 });
 

@@ -1,8 +1,9 @@
 import { eventAction } from 'constants/actions';
 
-// This state is for getting events list from database
+// This state is for getting events list from database + event details
 export const INITIAL_STATE = {
-  data: [],
+  list: [],
+  eventDetail: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,7 +11,21 @@ export default (state = INITIAL_STATE, action) => {
     case eventAction.LOAD_EVENTS_LIST_SUCCESS: {
       return {
         ...state,
-        data: action.payload.data,
+        list: action.payload.data,
+      };
+    }
+
+    case eventAction.LOAD_EVENT_DETAIL: {
+      return {
+        ...state,
+        eventDetail: {},
+      };
+    }
+
+    case eventAction.LOAD_EVENT_DETAIL_SUCCESS: {
+      return {
+        ...state,
+        eventDetail: action.payload.data,
       };
     }
 
