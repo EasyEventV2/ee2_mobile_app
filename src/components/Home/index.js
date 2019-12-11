@@ -59,8 +59,8 @@ class Home extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    const { itemsList, currentPage, totalPages } = data;
+    const { list } = this.props;
+    const { itemsList, currentPage, totalPages } = list;
     const numbersList = this.generateNumbersList(totalPages);
     const { loading } = this.state;
     if (loading) {
