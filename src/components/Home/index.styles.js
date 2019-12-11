@@ -10,11 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  listContainer: {
-    flex: 1,
-  },
-  cardList: {
-    justifyContent: 'center',
+  cardListContainer: {
     flex: 1,
     flexDirection: 'column',
   },

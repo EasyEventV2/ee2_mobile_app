@@ -5,9 +5,9 @@ export const changeToLoginComponent = () => ({
   type: authAction.IS_LOGIN_COMPONENT,
 });
 
-export const loadEventsListDispatch = (uid) => ({
+export const loadEventsListDispatch = (uid, page) => ({
   type: eventAction.LOAD_EVENTS_LIST,
-  promise: get(`/users/${uid}/events`, {}, true),
+  promise: get(`/users/${uid}/events?p=${page}`, {}, true),
 });
 
 export const loadEventDetailDispatch = (eventId) => ({
