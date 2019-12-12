@@ -25,3 +25,8 @@ export const eventAction = {
   LOAD_EVENT_DETAIL: 'LOAD_EVENTS_DETAIL',
   LOAD_EVENT_DETAIL_SUCCESS: 'LOAD_EVENTS_DETAIL_SUCCESS',
 };
+
+export const qrAction = {
+  CHECK_QR: 'CHECK_QR',
+  CHECK_QR_SUCCESS: 'CHECK_QR_SUCCESS',
+};

@@ -89,8 +89,8 @@ class Pagination extends Component {
       style={styles.numberListContainer}
       data={firstNumbersList}
       extraData={firstNumbersList}
-      listKey={(item) => item}
-      keyExtractor={(item) => item}
+      listKey={(item) => item.toString()}
+      keyExtractor={(item) => item.toString()}
       renderItem={this.renderItem}
       ListHeaderComponent={this.renderHeaderComponent}
       numColumns={firstNumbersList.length}
@@ -102,8 +102,8 @@ class Pagination extends Component {
       style={styles.numberListContainer}
       data={middleNumbersList}
       extraData={middleNumbersList}
-      listKey={(item) => item}
-      keyExtractor={(item) => item}
+      listKey={(item) => item.toString()}
+      keyExtractor={(item) => item.toString()}
       renderItem={this.renderItem}
       numColumns={middleNumbersList.length}
     />
@@ -114,8 +114,8 @@ class Pagination extends Component {
       style={styles.numberListContainer}
       data={lastNumbersList}
       extraData={lastNumbersList}
-      listKey={(item) => item}
-      keyExtractor={(item) => item}
+      listKey={(item) => item.toString()}
+      keyExtractor={(item) => item.toString()}
       renderItem={this.renderItem}
       ListFooterComponent={this.renderFooterComponent}
       numColumns={lastNumbersList.length}
@@ -181,7 +181,7 @@ class Pagination extends Component {
           style={styles.numberListContainer}
           data={numbersList}
           extraData={numbersList}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.toString()}
           renderItem={this.renderItem}
           ListHeaderComponent={this.renderHeaderComponent}
           ListFooterComponent={this.renderFooterComponent}
