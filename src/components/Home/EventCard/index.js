@@ -14,8 +14,8 @@ class EventCard extends Component {
     NavigationWithoutProps.navigate('EventDetail', { eventId: id });
   }
 
-  goToQR = () => {
-    NavigationWithoutProps.navigate('QR');
+  goToQR = (id) => {
+    NavigationWithoutProps.navigate('QR', { eventId: id });
   }
 
   mapNameToColorAndText = (name) => {
@@ -83,7 +83,7 @@ class EventCard extends Component {
               </View>
               <TouchableOpacity
                 style={styles.checkInButton}
-                onPress={this.goToQR}
+                onPress={() => this.goToQR(item.event._id)}
               >
                 <Text style={styles.checkInText}>
                   CHECK-IN

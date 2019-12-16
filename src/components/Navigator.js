@@ -8,6 +8,7 @@ import {
 } from 'react-navigation';
 import Home from 'components/Home';
 import QR from 'components/Home/QR';
+import ResultCheckin from 'components/Home/QR/ResultCheckin';
 import Authentication from 'components/Authentication';
 import EventDetail from 'components/Home/EventDetail';
 import Accepted from 'components/Home/EventDetail/Guest/Accepted';
@@ -57,6 +58,9 @@ const AppStack = createStackNavigator(
     DrawerStack,
     QR: {
       screen: QR,
+    },
+    ResultCheckin: {
+      screen: ResultCheckin,
     },
     Guest: GuestStack,
     EventDetail: {

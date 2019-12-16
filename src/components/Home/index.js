@@ -59,8 +59,8 @@ class Home extends Component {
   }
 
   render() {
-    const { list } = this.props;
-    const { itemsList, currentPage, totalPages } = list;
+    const { eventList } = this.props;
+    const { itemsList, currentPage, totalPages } = eventList;
     const numbersList = this.generateNumbersList(totalPages);
     const { loading } = this.state;
     if (loading) {
@@ -100,7 +100,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  list: state.event.list,
+  eventList: state.event.eventList,
   loggedIn: state.auth.loggedIn,
 });
 

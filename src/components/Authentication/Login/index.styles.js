@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'constants/sizes';
+import { SCREEN_HEIGHT } from 'constants/sizes';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     height: SCREEN_HEIGHT * 0.25,
   },
   imgLogo: {
-    width: SCREEN_WIDTH * 0.36,
-    height: SCREEN_HEIGHT * 0.15,
+    width: SCREEN_HEIGHT * 0.24,
+    height: (SCREEN_HEIGHT * 0.24) * (354 / 512),
   },
   text: {
     fontSize: SCREEN_HEIGHT * 0.025,
