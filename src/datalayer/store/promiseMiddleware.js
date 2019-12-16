@@ -39,7 +39,6 @@ export default ({ dispatch, getState }) => (next) => (action) => {
       extraPayload: rest.payload,
     });
 
-    console.log(error);
     const response = { success: false, error };
     return response;
   });
