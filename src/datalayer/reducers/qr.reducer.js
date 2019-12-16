@@ -10,7 +10,7 @@ export default (state = INITIAL_STATE, action) => {
     case qrAction.CHECK_QR_SUCCESS: {
       return {
         ...state,
-        list: action.payload.data,
+        checkedInResult: action.payload.data,
       };
     }
 

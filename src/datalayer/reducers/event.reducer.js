@@ -1,17 +1,17 @@
 import { eventAction } from 'constants/actions';
 
-// This state is for getting events list from database + event details
+// This state is for getting events eventList from database + event details
 export const INITIAL_STATE = {
-  list: [],
+  eventList: [],
   eventDetail: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case eventAction.LOAD_EVENTS_LIST_SUCCESS: {
+    case eventAction.LOAD_EVENTS_eventList_SUCCESS: {
       return {
         ...state,
-        list: action.payload.data,
+        eventList: action.payload.data,
       };
     }
 

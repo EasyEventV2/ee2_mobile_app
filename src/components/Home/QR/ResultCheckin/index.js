@@ -26,7 +26,6 @@ class ResultCheckin extends Component {
         if (!res.success) {
           /**
            * @todo Specific errors will be declared here.
-           * @todo Depends on how many type of errors that API response.
            */
           this.setState({ checkInEnum: CheckInEnum.ALREADY_CHECKED_IN });
         } else {
