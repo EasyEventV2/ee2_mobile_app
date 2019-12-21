@@ -8,6 +8,13 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case eventAction.LOAD_EVENTS_LIST: {
+      return {
+        ...state,
+        eventList: [],
+      };
+    }
+
     case eventAction.LOAD_EVENTS_LIST_SUCCESS: {
       return {
         ...state,

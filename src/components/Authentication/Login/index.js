@@ -27,8 +27,8 @@ class Login extends Component {
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
-          this.setState({ loading: false });
         }
+        this.setState({ loading: false });
       });
   }
 
