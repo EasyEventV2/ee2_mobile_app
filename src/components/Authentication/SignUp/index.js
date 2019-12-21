@@ -6,17 +6,19 @@ import { connect } from 'react-redux';
 import InputField from 'components/Authentication/InputField';
 import { SCREEN_HEIGHT } from 'constants/sizes';
 import logoPath from 'assets/images/logo-fit-512x354.png';
-import { changeToLoginComponentDispatch } from 'datalayer/actions/auth.action';
+import { changeToLoginComponentDispatch, signupDispatch } from 'datalayer/actions/auth.action';
+import Dialog from 'utils/errorDialog';
 import styles from './index.styles';
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullname: '',
+      fullName: '',
       email: '',
       username: '',
       password: '',
+      phoneNumber: '',
       confirmPassword: '',
       loading: false,
     };
@@ -26,6 +28,28 @@ class SignUp extends Component {
     this.setState({ [name]: text });
   }
 
+  signup = () => {
+    const { signupDispatch } = this.props;
+    const {
+      fullName, email, username, password, phoneNumber,
+    } = this.state;
+    const userInfo = {
+      fullName,
+      email,
+      username,
+      password,
+      phoneNumber,
+    };
+    this.setState({ loading: true });
+    signupDispatch(userInfo)
+      .then(res => {
+        if (!res.success) {
+          Dialog.show(res.error);
+        }
+        this.setState({ loading: false });
+      });
+  }
+
   renderSignupButton = () => {
     const { loading } = this.state;
     if (!loading) {
@@ -33,7 +57,7 @@ class SignUp extends Component {
         <View>
           <TouchableOpacity
             style={styles.mainButton}
-            onPress={this.onSignup}
+            onPress={this.signup}
           >
             <Text style={styles.text}>ĐĂNG KÝ</Text>
           </TouchableOpacity>
@@ -50,7 +74,7 @@ class SignUp extends Component {
   render() {
     const { changeToLoginComponentDispatch } = this.props;
     const {
-      fullname, email, username, password, confirmPassword,
+      fullName, email, username, password, confirmPassword, phoneNumber,
     } = this.state;
     return (
       <ScrollView style={styles.container}>
@@ -64,7 +88,7 @@ class SignUp extends Component {
         <View style={styles.formContainer}>
           <InputField
             placeholder="Tên đầy đủ..."
-            value={fullname}
+            value={fullName}
             onChangeText={this.onChangeText}
             isSecureText={false}
             marginTop={SCREEN_HEIGHT * 0.05}
@@ -97,6 +121,13 @@ class SignUp extends Component {
             isSecureText
             marginTop={SCREEN_HEIGHT * 0.05}
           />
+          <InputField
+            placeholder="Số điện thoại..."
+            value={phoneNumber}
+            onChangeText={this.onChangeText}
+            isSecureText={false}
+            marginTop={SCREEN_HEIGHT * 0.05}
+          />
 
         </View>
 
@@ -116,6 +147,7 @@ class SignUp extends Component {
 
 const mapDispatchToProps = {
   changeToLoginComponentDispatch,
+  signupDispatch,
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);

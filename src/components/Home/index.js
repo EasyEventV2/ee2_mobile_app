@@ -3,7 +3,7 @@
 /* Packages */
 import React, { Component } from 'react';
 import {
-  View, FlatList, ActivityIndicator,
+  View, FlatList, ActivityIndicator, Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 /* Components */
@@ -26,6 +26,7 @@ class Home extends Component {
     super(props);
     this.state = {
       loading: false,
+      isEmptyEventsList: false,
     };
   }
 
@@ -41,6 +42,9 @@ class Home extends Component {
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
+        }
+        if (res.error.data.error.code === 40402) {
+          this.setState({ isEmptyEventsList: true });
         }
         this.setState({ loading: false });
       });
@@ -62,7 +66,7 @@ class Home extends Component {
     const { eventList } = this.props;
     const { itemsList, currentPage, totalPages } = eventList;
     const numbersList = this.generateNumbersList(totalPages);
-    const { loading } = this.state;
+    const { loading, isEmptyEventsList } = this.state;
     if (loading) {
       return (
         <View style={styles.container}>
@@ -70,6 +74,17 @@ class Home extends Component {
           <Searchbar />
           <View style={styles.loadingContainer}>
             <ActivityIndicator />
+          </View>
+        </View>
+      );
+    }
+    if (isEmptyEventsList) {
+      return (
+        <View style={styles.container}>
+          <Headbar title="TRANG CHỦ" />
+          <Searchbar />
+          <View style={styles.emptyListContainer}>
+            <Text style={styles.emptyListText}>Chưa có sự kiện nào</Text>
           </View>
         </View>
       );

@@ -31,6 +31,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+    case authAction.ON_SIGNUP_SUCCESS:
     case authAction.ON_LOGIN_SUCCESS: {
       return {
         ...state,

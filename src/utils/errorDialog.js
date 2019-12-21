@@ -30,6 +30,12 @@ class ErrorDialog {
           Alert.alert('Lỗi', 'Phiên đăng nhập đã hết hạn!');
           store.dispatch(logoutDispatch());
           break;
+        case 40905:
+          Alert.alert('Lỗi', 'Username này đã được sử dụng!');
+          break;
+        case 40906:
+          Alert.alert('Lỗi', 'Email này đã được sử dụng!');
+          break;
         default:
           break;
       }
