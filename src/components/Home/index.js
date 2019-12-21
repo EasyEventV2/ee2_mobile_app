@@ -26,7 +26,6 @@ class Home extends Component {
     super(props);
     this.state = {
       loading: false,
-      isEmptyEventsList: false,
     };
   }
 
@@ -42,9 +41,6 @@ class Home extends Component {
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
-        }
-        if (res.error.data.error.code === 40402) {
-          this.setState({ isEmptyEventsList: true });
         }
         this.setState({ loading: false });
       });
@@ -62,53 +58,50 @@ class Home extends Component {
     return numbersList;
   }
 
-  render() {
+  renderCondition() {
     const { eventList } = this.props;
     const { itemsList, currentPage, totalPages } = eventList;
     const numbersList = this.generateNumbersList(totalPages);
-    const { loading, isEmptyEventsList } = this.state;
+    const { loading } = this.state;
     if (loading) {
       return (
-        <View style={styles.container}>
-          <Headbar title="TRANG CHỦ" />
-          <Searchbar />
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator />
-          </View>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator />
         </View>
       );
     }
-    if (isEmptyEventsList) {
+    if (eventList.length === 0) {
       return (
-        <View style={styles.container}>
-          <Headbar title="TRANG CHỦ" />
-          <Searchbar />
-          <View style={styles.emptyListContainer}>
-            <Text style={styles.emptyListText}>Chưa có sự kiện nào</Text>
-          </View>
+        <View style={styles.emptyListContainer}>
+          <Text style={styles.emptyListText}>Chưa có sự kiện nào</Text>
         </View>
       );
     }
     return (
+      <FlatList
+        style={styles.cardListContainer}
+        data={itemsList}
+        extraData={itemsList}
+        keyExtractor={(item) => item.event._id}
+        renderItem={({ item }) => <EventCard item={item} />}
+        numColumns={1}
+        ListFooterComponent={(
+          <Pagination
+            numbersList={numbersList}
+            currentPage={currentPage}
+            loadPage={(page) => this.loadPage(page)}
+          />
+        )}
+      />
+    );
+  }
+
+  render() {
+    return (
       <View style={styles.container}>
         <Headbar title="TRANG CHỦ" />
         <Searchbar />
-
-        <FlatList
-          style={styles.cardListContainer}
-          data={itemsList}
-          extraData={itemsList}
-          keyExtractor={(item) => item.event._id}
-          renderItem={({ item }) => <EventCard item={item} />}
-          numColumns={1}
-          ListFooterComponent={(
-            <Pagination
-              numbersList={numbersList}
-              currentPage={currentPage}
-              loadPage={(page) => this.loadPage(page)}
-            />
-          )}
-        />
+        {this.renderCondition()}
       </View>
     );
   }

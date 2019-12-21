@@ -19,7 +19,7 @@ export const loginDispatch = (username, password) => ({
 });
 
 export const signupDispatch = (userInfo) => ({
-  type: authAction.ON_LOGIN,
+  type: authAction.ON_SIGNUP,
   promise: post('/users', {
     userInfo,
   }),

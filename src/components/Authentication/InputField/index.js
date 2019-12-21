@@ -7,7 +7,7 @@ import styles from './index.styles';
 class InputField extends Component {
   render() {
     const {
-      placeholder, name, value, onChangeText, isSecureText,
+      placeholder, name, value, onChangeText, isSecureText, keyboardType,
       marginTop, marginBottom, marginLeft, marginRight,
     } = this.props;
     return (
@@ -24,6 +24,7 @@ class InputField extends Component {
           value={value}
           autoCapitalize="none"
           onChangeText={(text) => onChangeText(name, text)}
+          keyboardType={keyboardType}
           secureTextEntry={isSecureText}
           style={styles.inputText}
         />

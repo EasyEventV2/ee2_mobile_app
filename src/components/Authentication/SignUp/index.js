@@ -88,6 +88,7 @@ class SignUp extends Component {
         <View style={styles.formContainer}>
           <InputField
             placeholder="Tên đầy đủ..."
+            name="fullName"
             value={fullName}
             onChangeText={this.onChangeText}
             isSecureText={false}
@@ -95,13 +96,16 @@ class SignUp extends Component {
           />
           <InputField
             placeholder="Email..."
+            name="email"
             value={email}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            keyboardType="email-address"
             marginTop={SCREEN_HEIGHT * 0.05}
           />
           <InputField
             placeholder="Tên đăng nhập..."
+            name="username"
             value={username}
             onChangeText={this.onChangeText}
             isSecureText={false}
@@ -109,6 +113,7 @@ class SignUp extends Component {
           />
           <InputField
             placeholder="Mật khẩu..."
+            name="password"
             value={password}
             onChangeText={this.onChangeText}
             isSecureText
@@ -116,6 +121,7 @@ class SignUp extends Component {
           />
           <InputField
             placeholder="Nhập lại mật khẩu..."
+            name="confirmPassword"
             value={confirmPassword}
             onChangeText={this.onChangeText}
             isSecureText
@@ -123,9 +129,11 @@ class SignUp extends Component {
           />
           <InputField
             placeholder="Số điện thoại..."
+            name="phoneNumber"
             value={phoneNumber}
             onChangeText={this.onChangeText}
             isSecureText={false}
+            keyboardType="phone-pad"
             marginTop={SCREEN_HEIGHT * 0.05}
           />
 
