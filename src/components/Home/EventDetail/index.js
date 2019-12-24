@@ -11,11 +11,20 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import { loadEventDetailDispatch } from 'datalayer/actions/event.action';
+import { loadGuestsListDispatch } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
+import NavigationWithoutProps from 'utils/navigationWithoutProps';
 import { isEmptyObject } from 'utils/object';
 import styles from './index.styles';
 
 class EventDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      onLoadingGuests: false,
+    };
+  }
+
   componentDidMount() {
     const { navigation, loadEventDetailDispatch } = this.props;
     const eventId = navigation.getParam('eventId');
@@ -28,7 +37,33 @@ class EventDetail extends Component {
   }
 
   goToGuestsList = () => {
+    const { loadGuestsListDispatch } = this.props;
+    this.setState({ onLoadingGuests: true });
+    loadGuestsListDispatch()
+      .then(res => {
+        if (!res.success) {
+          Dialog.show(res.error);
+        } else {
+          NavigationWithoutProps.navigate('Guest');
+        }
+        this.setState({ onLoadingGuests: false });
+      });
+  }
 
+  renderGuestsListButton = () => {
+    const { onLoadingGuests } = this.state;
+    if (onLoadingGuests) {
+      return (
+        <View style={styles.button}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={this.goToGuestsList} style={styles.button}>
+        <Text style={styles.buttonText}>Danh sách khách tham gia</Text>
+      </TouchableOpacity>
+    );
   }
 
   render() {
@@ -91,9 +126,7 @@ class EventDetail extends Component {
           <View style={styles.guestsIconAndTextContainer}>
             <FontAwesome name="users" size={23} color="black" />
             <View style={styles.buttonContainer}>
-              <TouchableOpacity onPress={this.goToGuestsList} style={styles.button}>
-                <Text style={styles.text}>Danh sách khách tham gia</Text>
-              </TouchableOpacity>
+              {this.renderGuestsListButton()}
             </View>
           </View>
           <View style={styles.iconAndTextContainer}>
@@ -138,6 +171,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loadEventDetailDispatch,
+  loadGuestsListDispatch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);

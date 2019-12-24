@@ -22,11 +22,11 @@ const GuestStack = createMaterialTopTabNavigator({
   Unaccepted: {
     screen: Unaccepted,
   },
-  CheckedIn: {
-    screen: CheckedIn,
-  },
   Accepted: {
     screen: Accepted,
+  },
+  CheckedIn: {
+    screen: CheckedIn,
   },
 }, {
   tabBarOptions: {
@@ -34,9 +34,10 @@ const GuestStack = createMaterialTopTabNavigator({
     inactiveTintColor: 'gray',
     labelStyle: {
       fontSize: 12,
+      fontWeight: 'bold',
     },
     style: {
-      backgroundColor: 'white',
+      backgroundColor: '#F5FCFF',
     },
   },
   tabBarPosition: 'bottom',

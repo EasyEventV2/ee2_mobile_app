@@ -33,3 +33,8 @@ export const qrAction = {
   CHECK_QR: 'CHECK_QR',
   CHECK_QR_SUCCESS: 'CHECK_QR_SUCCESS',
 };
+
+export const guestAction = {
+  LOAD_GUESTS_LIST: 'LOAD_GUESTS_LIST',
+  LOAD_GUESTS_LIST_SUCCESS: 'LOAD_GUESTS_LIST_SUCCESS',
+};

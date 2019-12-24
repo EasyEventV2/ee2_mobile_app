@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   text: {
     marginBottom: SCREEN_HEIGHT * 0.015,
     color: 'black',
-    fontSize: 20,
+    fontSize: SCREEN_HEIGHT * 0.035,
   },
   guestsIconAndTextContainer: {
     flexDirection: 'row',
@@ -49,11 +49,19 @@ const styles = StyleSheet.create({
     marginHorizontal: SCREEN_HEIGHT * 0.015,
   },
   button: {
+    justifyContent: 'center',
     height: SCREEN_HEIGHT * 0.065,
-    padding: SCREEN_HEIGHT * 0.01,
+    width: (SCREEN_HEIGHT * 0.065) * 7,
+    paddingVertical: SCREEN_HEIGHT * 0.01,
     backgroundColor: '#fb3',
     borderRadius: 8,
     elevation: 10,
+  },
+  buttonText: {
+    marginBottom: 0,
+    color: 'black',
+    fontSize: SCREEN_HEIGHT * 0.035,
+    textAlign: 'center',
   },
   mapContainer: {
     marginHorizontal: SCREEN_HEIGHT * 0.015,
