@@ -8,7 +8,7 @@ import styles from './index.styles';
 
 class Accepted extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Đã xác nhận email',
+    tabBarLabel: 'Đã chấp nhận',
   }
 
   render() {
@@ -24,7 +24,7 @@ class Accepted extends Component {
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>
-            DANH SÁCH KHÁCH ĐÃ ĐƯỢC XÁC NHẬN EMAIL NHƯNG CHƯA CHECK-IN
+            DANH SÁCH KHÁCH ĐÃ ĐƯỢC CHẤP NHẬN ĐẾN SỰ KIỆN NHƯNG CHƯA CHECK-IN
           </Text>
         </View>
         <FlatList

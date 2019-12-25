@@ -9,15 +9,6 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case guestAction.LOAD_GUESTS_LIST: {
-      return {
-        ...state,
-        unacceptedGuestsList: [],
-        acceptedGuestsList: [],
-        checkedInGuestsList: [],
-      };
-    }
-
     case guestAction.LOAD_GUESTS_LIST_SUCCESS: {
       return {
         ...state,
@@ -25,6 +16,10 @@ export default (state = INITIAL_STATE, action) => {
         acceptedGuestsList: action.payload.data.acceptedGuestsList,
         checkedInGuestsList: action.payload.data.checkedInGuestsList,
       };
+    }
+
+    case guestAction.ACCEPT_TICKET_SUCCESS: {
+      return state;
     }
 
     default:
