@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:dev": "REACT_APP_ENV=development node node_modules/react-native/local-cli/cli.js start",
+    "start:prod": "REACT_APP_ENV=production node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "node ./scripts/lint.js",
     "lint:warn": "WARN=1 node ./scripts/lint.js",
