@@ -1,9 +1,5 @@
-import { eventAction, authAction } from 'constants/actions';
+import { eventAction } from 'constants/actions';
 import { get } from 'utils/request';
-
-export const changeToLoginComponent = () => ({
-  type: authAction.IS_LOGIN_COMPONENT,
-});
 
 export const loadEventsListDispatch = (uid, page) => ({
   type: eventAction.LOAD_EVENTS_LIST,
