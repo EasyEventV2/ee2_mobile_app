@@ -4,7 +4,6 @@ import { SCREEN_WIDTH, SCREEN_HEIGHT } from 'constants/sizes';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
@@ -34,10 +33,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   listItem: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: '#f5fcff',
+    padding: SCREEN_HEIGHT * 0.015,
+    borderRadius: 8,
     marginBottom: SCREEN_HEIGHT * 0.015,
   },
 });

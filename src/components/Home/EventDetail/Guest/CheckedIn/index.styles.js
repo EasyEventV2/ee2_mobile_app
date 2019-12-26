@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   listItem: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: '#f5fcff',
+    padding: SCREEN_HEIGHT * 0.015,
+    borderRadius: 8,
     marginBottom: SCREEN_HEIGHT * 0.015,
   },
 });
