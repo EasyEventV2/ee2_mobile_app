@@ -1,13 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import { qrAction } from 'constants/actions';
-import { get } from 'utils/request';
+import { put } from 'utils/request';
 
-export const checkQRDispatch = (barcodeResult, eventId, userId) => ({
+export const checkQRDispatch = (barcodeResult, eventId, guestId, ticketCode) => ({
   type: qrAction.CHECK_QR,
-  promise: get('http://www.mocky.io/v2/5df1c4cc31000085008f1067',
+  promise: put(`/events/${eventId}/guests/${guestId}`,
     {
-      barcodeResult,
-      eventId,
-      userId,
-    }, false),
+      action: 'checkin',
+      ticketCode,
+    }, true),
 });

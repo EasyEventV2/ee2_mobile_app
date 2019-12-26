@@ -9,9 +9,10 @@ import NavigationWithoutProps from 'utils/navigationWithoutProps';
 import styles from './index.styles';
 
 class QR extends Component {
-  goToResult = (barcodeResult) => {
+  goToResult = (data) => {
     const { navigation } = this.props;
     const eventId = navigation.getParam('eventId');
+    const barcodeResult = JSON.parse(data);
     NavigationWithoutProps.navigate('ResultCheckin', {
       eventId,
       barcodeResult,
@@ -27,7 +28,7 @@ class QR extends Component {
         <View style={styles.cameraContainer}>
           <RNCamera
             style={styles.camera}
-            onBarCodeRead={result => this.goToResult(result)}
+            onBarCodeRead={result => this.goToResult(result.data)}
             ratio="1:1"
           />
         </View>

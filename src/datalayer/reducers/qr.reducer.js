@@ -7,13 +7,6 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case qrAction.CHECK_QR: {
-      return {
-        ...state,
-        checkedInResult: {},
-      };
-    }
-
     case qrAction.CHECK_QR_SUCCESS: {
       return {
         ...state,
