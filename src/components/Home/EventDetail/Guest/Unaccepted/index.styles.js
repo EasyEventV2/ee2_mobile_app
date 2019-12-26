@@ -4,8 +4,8 @@ import { SCREEN_WIDTH, SCREEN_HEIGHT } from 'constants/sizes';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: 'white',
   },
   loadingContainer: {
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     width: SCREEN_WIDTH * 0.95,
+    marginBottom: SCREEN_HEIGHT * 0.03,
   },
   text: {
     fontSize: SCREEN_HEIGHT * 0.032,
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginHorizontal: SCREEN_WIDTH * 0.02,
     marginVertical: SCREEN_HEIGHT * 0.03,
+    paddingHorizontal: SCREEN_WIDTH * 0.015,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
