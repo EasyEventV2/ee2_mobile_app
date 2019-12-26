@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity, Image, ActivityIndicator, ScrollView,
+  Text, View, TouchableOpacity, Image, ActivityIndicator, ScrollView, BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux';
 import InputField from 'components/Authentication/InputField';
@@ -22,6 +22,20 @@ class SignUp extends Component {
       confirmPassword: '',
       loading: false,
     };
+  }
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleBackPress = () => {
+    const { changeToLoginComponentDispatch } = this.props;
+    changeToLoginComponentDispatch();
+    return true;
   }
 
   onChangeText = (name, text) => {

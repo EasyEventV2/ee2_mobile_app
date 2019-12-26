@@ -10,6 +10,13 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case authAction.LOAD_AUTH: {
+      return {
+        ...state,
+        loggedIn: null,
+      };
+    }
+
     case authAction.LOAD_AUTH_SUCCESS: {
       return {
         ...state,

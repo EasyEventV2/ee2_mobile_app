@@ -28,7 +28,12 @@ class ResultCheckin extends Component {
           /**
            * @todo Specific errors will be declared here.
            */
-          this.setState({ checkInEnum: CheckInEnum.ALREADY_CHECKED_IN });
+          const errorCode = res.error.data.error.code;
+          if (errorCode === 40904) {
+            this.setState({ checkInEnum: CheckInEnum.ALREADY_CHECKED_IN });
+          } else if (errorCode === 40403) {
+            this.setState({ checkInEnum: CheckInEnum.NOT_IN_DB });
+          }
         } else {
           console.log(res);
           this.setState({ checkInEnum: CheckInEnum.SUCCESS_CHECKED_IN });
