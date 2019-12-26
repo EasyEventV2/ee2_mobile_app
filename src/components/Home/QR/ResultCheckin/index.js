@@ -20,9 +20,8 @@ class ResultCheckin extends Component {
 
   componentWillMount() {
     const { navigation, checkQRDispatch } = this.props;
-    const eventId = navigation.getParam('eventId');
     const barcodeResult = navigation.getParam('barcodeResult');
-    checkQRDispatch(eventId, barcodeResult._id, barcodeResult.ticket.code)
+    checkQRDispatch(barcodeResult.eventId, barcodeResult.guestId, barcodeResult.ticketCode)
       .then(res => {
         if (!res.success) {
           const errorCode = res.error.data.error.code;
@@ -32,7 +31,6 @@ class ResultCheckin extends Component {
             this.setState({ checkInEnum: CheckInEnum.NOT_IN_DB });
           }
         } else {
-          console.log(res);
           this.setState({ checkInEnum: CheckInEnum.SUCCESS_CHECKED_IN });
         }
       });
@@ -64,25 +62,18 @@ class ResultCheckin extends Component {
       );
     }
     return (
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>
-            THÀNH CÔNG
-          </Text>
-        </View>
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>{`Email: ${updatedGuest.email}`}</Text>
-          <Text style={styles.infoText}>{`Giới tính: ${updatedGuest.info.gender}`}</Text>
-          <Text style={styles.infoText}>{`Ngành học: ${updatedGuest.info.major}`}</Text>
-          <Text style={styles.infoText}>{`Điện thoại: ${updatedGuest.info.phone_number}`}</Text>
-          <Text style={styles.infoText}>{`Check-in vào lúc: ${moment(updatedGuest.checkedInAt).format('HH:MM:SS - DD/MM/YYYY')}`}</Text>
-          <TouchableOpacity
-            onPress={() => NavigationWithoutProps.back()}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Quét lại</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.infoContainer}>
+        <Text style={styles.titleText}>THÀNH CÔNG</Text>
+        <Text style={styles.infoText}>{`Email: ${updatedGuest.email}`}</Text>
+        <Text style={styles.infoText}>{`Giới tính: ${updatedGuest.info.gender}`}</Text>
+        <Text style={styles.infoText}>{`Điện thoại: ${updatedGuest.info.phone_number}`}</Text>
+        <Text style={styles.infoText}>{`Check-in vào lúc:\n${moment(updatedGuest.checkedInAt).format('HH:MM:SS - DD/MM/YYYY')}`}</Text>
+        <TouchableOpacity
+          onPress={() => NavigationWithoutProps.back()}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Quét lại</Text>
+        </TouchableOpacity>
       </View>
     );
   }
