@@ -11,7 +11,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import { loadEventDetailDispatch } from 'datalayer/actions/event.action';
-import { loadGuestsListDispatch } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
 import NavigationWithoutProps from 'utils/navigationWithoutProps';
 import { isEmptyObject } from 'utils/object';
@@ -37,17 +36,13 @@ class EventDetail extends Component {
   }
 
   goToGuestsList = () => {
-    const { loadGuestsListDispatch } = this.props;
+    const { navigation } = this.props;
+    const eventId = navigation.getParam('eventId');
     this.setState({ onLoadingGuests: true });
-    loadGuestsListDispatch()
-      .then(res => {
-        if (!res.success) {
-          Dialog.show(res.error);
-        } else {
-          NavigationWithoutProps.navigate('Guest');
-        }
-        this.setState({ onLoadingGuests: false });
-      });
+    NavigationWithoutProps.navigate('Guest', {
+      eventId,
+    });
+    this.setState({ onLoadingGuests: false });
   }
 
   renderGuestsListButton = () => {
@@ -171,7 +166,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loadEventDetailDispatch,
-  loadGuestsListDispatch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);

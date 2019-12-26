@@ -4,7 +4,7 @@ import {
   Text, View, FlatList, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { loadGuestsListDispatch, acceptTicketDispatch } from 'datalayer/actions/guest.action';
+import { loadUnacceptedGuestsListDispatch, acceptTicketDispatch } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
 import styles from './index.styles';
 
@@ -12,8 +12,20 @@ class Unaccepted extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      onLoadingAcceptTicket: false,
+      onLoading: false,
     };
+  }
+
+  componentDidMount() {
+    const { loadUnacceptedGuestsListDispatch } = this.props;
+    this.setState({ onLoading: true });
+    loadUnacceptedGuestsListDispatch()
+      .then(res => {
+        if (!res.success) {
+          Dialog.show(res.error);
+        }
+        this.setState({ onLoading: false });
+      });
   }
 
   static navigationOptions = {
@@ -21,31 +33,39 @@ class Unaccepted extends Component {
   }
 
   acceptTicket = (guestId) => {
-    const { acceptTicketDispatch, loadGuestsListDispatch } = this.props;
-    this.setState({ onLoadingAcceptTicket: true });
-    acceptTicketDispatch(guestId)
+    const { acceptTicketDispatch, loadUnacceptedGuestsListDispatch, navigation } = this.props;
+    const eventId = navigation.getParam('eventId');
+    this.setState({ onLoading: true });
+    acceptTicketDispatch(eventId, guestId)
       .then(res => {
         if (!res.success) {
           Dialog.show(res.error);
         } else {
-          loadGuestsListDispatch()
+          loadUnacceptedGuestsListDispatch()
             .then(res => {
               if (!res.success) {
                 Dialog.show(res.error);
               }
             });
         }
-        this.setState({ onLoadingAcceptTicket: false });
+        this.setState({ onLoading: false });
       });
   }
 
   render() {
     const { unacceptedGuestsList } = this.props;
-    const { onLoadingAcceptTicket } = this.state;
-    if (onLoadingAcceptTicket) {
+    const { onLoading } = this.state;
+    if (onLoading) {
       return (
         <View style={styles.container}>
-          <ActivityIndicator />
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleText}>
+              DANH SÁCH KHÁCH CHƯA CHẤP NHẬN ĐẾN SỰ KIỆN
+            </Text>
+          </View>
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator />
+          </View>
         </View>
       );
     }
@@ -60,7 +80,7 @@ class Unaccepted extends Component {
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>
-            DANH SÁCH KHÁCH CHƯA ĐƯỢC CHẤP NHẬN ĐẾN SỰ KIỆN
+            DANH SÁCH KHÁCH CHƯA CHẤP NHẬN ĐẾN SỰ KIỆN
           </Text>
         </View>
         <FlatList
@@ -71,7 +91,10 @@ class Unaccepted extends Component {
           renderItem={({ item }) => (
             <View style={styles.listItem}>
               <Text style={styles.text}>{item.email}</Text>
-              <TouchableOpacity onPress={() => this.acceptTicket(item._id)} style={styles.button}>
+              <TouchableOpacity
+                onPress={() => this.acceptTicket(item._id)}
+                style={styles.button}
+              >
                 <Text style={styles.text}>Chấp nhận</Text>
               </TouchableOpacity>
             </View>
@@ -88,7 +111,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadGuestsListDispatch,
+  loadUnacceptedGuestsListDispatch,
   acceptTicketDispatch,
 };
 

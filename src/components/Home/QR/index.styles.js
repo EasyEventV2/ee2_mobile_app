@@ -11,6 +11,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  invalidContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
   textContainer: {
     height: SCREEN_HEIGHT * 0.25,
     paddingHorizontal: SCREEN_WIDTH * 0.1,
@@ -30,6 +36,23 @@ const styles = StyleSheet.create({
   camera: {
     width: SCREEN_WIDTH * 0.95,
     height: SCREEN_WIDTH * 0.95,
+  },
+  titleText: {
+    fontSize: 25,
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#fb3',
+    alignSelf: 'center',
+    padding: 10,
+    borderRadius: 8,
+    marginVertical: 20,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: 'black',
   },
 });
 

@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import {
-  Text, View,
+  Text, View, TouchableOpacity, BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { RNCamera } from 'react-native-camera';
@@ -9,16 +10,60 @@ import NavigationWithoutProps from 'utils/navigationWithoutProps';
 import styles from './index.styles';
 
 class QR extends Component {
-  goToResult = (barcodeResult) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isBarcodeInvalid: false,
+    };
+  }
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  handleBackPress = () => {
+    const { isBarcodeInvalid } = this.state;
+    if (!isBarcodeInvalid) {
+      NavigationWithoutProps.back();
+      return true;
+    }
+    this.setState({ isBarcodeInvalid: false });
+    return true;
+  }
+
+  handleBarcodeRead = (data) => {
     const { navigation } = this.props;
     const eventId = navigation.getParam('eventId');
-    NavigationWithoutProps.navigate('ResultCheckin', {
-      eventId,
-      barcodeResult,
-    });
+    try {
+      const barcodeResult = JSON.parse(data);
+      NavigationWithoutProps.navigate('ResultCheckin', {
+        eventId,
+        barcodeResult,
+      });
+    } catch (err) {
+      this.setState({ isBarcodeInvalid: true });
+    }
   }
 
   render() {
+    const { isBarcodeInvalid } = this.state;
+    if (isBarcodeInvalid) {
+      return (
+        <View style={styles.invalidContainer}>
+          <Text style={styles.titleText}>Barcode không hợp lệ. Vui lòng quét barcode khác!</Text>
+          <TouchableOpacity
+            onPress={() => this.setState({ isBarcodeInvalid: false })}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Quét lại</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
@@ -27,7 +72,7 @@ class QR extends Component {
         <View style={styles.cameraContainer}>
           <RNCamera
             style={styles.camera}
-            onBarCodeRead={result => this.goToResult(result)}
+            onBarCodeRead={result => this.handleBarcodeRead(result.data)}
             ratio="1:1"
           />
         </View>

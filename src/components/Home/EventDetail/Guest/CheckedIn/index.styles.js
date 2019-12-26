@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   listContainer: {
     flex: 1,
     width: SCREEN_WIDTH * 0.95,
