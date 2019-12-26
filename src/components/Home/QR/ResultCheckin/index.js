@@ -22,12 +22,9 @@ class ResultCheckin extends Component {
     const { navigation, checkQRDispatch } = this.props;
     const eventId = navigation.getParam('eventId');
     const barcodeResult = navigation.getParam('barcodeResult');
-    checkQRDispatch(barcodeResult, eventId, barcodeResult._id, barcodeResult.ticket.code)
+    checkQRDispatch(eventId, barcodeResult._id, barcodeResult.ticket.code)
       .then(res => {
         if (!res.success) {
-          /**
-           * @todo Specific errors will be declared here.
-           */
           const errorCode = res.error.data.error.code;
           if (errorCode === 40904) {
             this.setState({ checkInEnum: CheckInEnum.ALREADY_CHECKED_IN });

@@ -35,7 +35,7 @@ class QR extends Component {
     return true;
   }
 
-  goToResult = (data) => {
+  handleBarcodeRead = (data) => {
     const { navigation } = this.props;
     const eventId = navigation.getParam('eventId');
     try {
@@ -72,7 +72,7 @@ class QR extends Component {
         <View style={styles.cameraContainer}>
           <RNCamera
             style={styles.camera}
-            onBarCodeRead={result => this.goToResult(result.data)}
+            onBarCodeRead={result => this.handleBarcodeRead(result.data)}
             ratio="1:1"
           />
         </View>

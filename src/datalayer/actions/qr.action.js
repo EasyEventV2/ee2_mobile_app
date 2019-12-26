@@ -2,7 +2,7 @@
 import { qrAction } from 'constants/actions';
 import { put } from 'utils/request';
 
-export const checkQRDispatch = (barcodeResult, eventId, guestId, ticketCode) => ({
+export const checkQRDispatch = (eventId, guestId, ticketCode) => ({
   type: qrAction.CHECK_QR,
   promise: put(`/events/${eventId}/guests/${guestId}`,
     {
