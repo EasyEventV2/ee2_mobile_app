@@ -9,7 +9,6 @@ import prodConfig from './prod';
 
 const env = REACT_APP_ENV;
 let envConfig = {};
-console.log(REACT_APP_ENV);
 if (env === 'development') {
   envConfig = devConfig;
 } else if (env === 'production') {

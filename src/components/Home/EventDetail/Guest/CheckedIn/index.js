@@ -4,9 +4,10 @@ import {
   Text, View, FlatList, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Pagination from 'components/Home/Pagination';
 import { loadCheckedInGuestsListDispatch } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
-import Pagination from 'components/Home/Pagination';
+import generateNumbersList from 'utils/array';
 import styles from './index.styles';
 
 class CheckedIn extends Component {
@@ -38,18 +39,10 @@ class CheckedIn extends Component {
       });
   }
 
-  generateNumbersList = (length) => {
-    const numbersList = [];
-    for (let i = 1; i <= length; i++) {
-      numbersList.push(i);
-    }
-    return numbersList;
-  }
-
   renderCondition() {
     const { checkedInGuestsList, checkedInPagination } = this.props;
     const { currentPage, totalPages } = checkedInPagination;
-    const numbersList = this.generateNumbersList(totalPages);
+    const numbersList = generateNumbersList(totalPages);
     const { onLoading } = this.state;
     if (onLoading) {
       return (

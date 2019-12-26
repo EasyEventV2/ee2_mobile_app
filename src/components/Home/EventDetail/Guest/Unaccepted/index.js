@@ -4,13 +4,14 @@ import {
   Text, View, FlatList, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Pagination from 'components/Home/Pagination';
 import {
   loadUnacceptedGuestsListDispatch,
   loadAcceptedGuestsListDispatch,
   acceptTicketDispatch,
 } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
-import Pagination from 'components/Home/Pagination';
+import generateNumbersList from 'utils/array';
 import styles from './index.styles';
 
 class Unaccepted extends Component {
@@ -40,14 +41,6 @@ class Unaccepted extends Component {
         }
         this.setState({ onLoading: false });
       });
-  }
-
-  generateNumbersList = (length) => {
-    const numbersList = [];
-    for (let i = 1; i <= length; i++) {
-      numbersList.push(i);
-    }
-    return numbersList;
   }
 
   acceptTicket = (guestId) => {
@@ -84,7 +77,7 @@ class Unaccepted extends Component {
   renderCondition() {
     const { unacceptedGuestsList, unacceptedPagination } = this.props;
     const { currentPage, totalPages } = unacceptedPagination;
-    const numbersList = this.generateNumbersList(totalPages);
+    const numbersList = generateNumbersList(totalPages);
     const { onLoading } = this.state;
     if (onLoading) {
       return (

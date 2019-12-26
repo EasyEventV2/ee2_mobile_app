@@ -4,9 +4,10 @@ import {
   Text, View, FlatList, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Pagination from 'components/Home/Pagination';
 import { loadAcceptedGuestsListDispatch } from 'datalayer/actions/guest.action';
 import Dialog from 'utils/errorDialog';
-import Pagination from 'components/Home/Pagination';
+import generateNumbersList from 'utils/array';
 import styles from './index.styles';
 
 class Accepted extends Component {
@@ -38,18 +39,10 @@ class Accepted extends Component {
       });
   }
 
-  generateNumbersList = (length) => {
-    const numbersList = [];
-    for (let i = 1; i <= length; i++) {
-      numbersList.push(i);
-    }
-    return numbersList;
-  }
-
   renderCondition() {
     const { acceptedGuestsList, acceptedPagination } = this.props;
     const { currentPage, totalPages } = acceptedPagination;
-    const numbersList = this.generateNumbersList(totalPages);
+    const numbersList = generateNumbersList(totalPages);
     const { onLoading } = this.state;
     if (onLoading) {
       return (
