@@ -2,19 +2,19 @@
 import { guestAction } from 'constants/actions';
 import { get, put } from 'utils/request';
 
-export const loadUnacceptedGuestsListDispatch = () => ({
+export const loadUnacceptedGuestsListDispatch = (eventId, page) => ({
   type: guestAction.LOAD_UNACCEPTED_GUESTS_LIST,
-  promise: get('http://www.mocky.io/v2/5e0284fd2f00007696dcd644', {}, true),
+  promise: get(`/events/${eventId}/guests?type=pending&p=${page}`, {}, true),
 });
 
-export const loadAcceptedGuestsListDispatch = () => ({
+export const loadAcceptedGuestsListDispatch = (eventId, page) => ({
   type: guestAction.LOAD_ACCEPTED_GUESTS_LIST,
-  promise: get('http://www.mocky.io/v2/5e0284fd2f00007696dcd644', {}, true),
+  promise: get(`/events/${eventId}/guests?type=approved&p=${page}`, {}, true),
 });
 
-export const loadCheckedInGuestsListDispatch = () => ({
+export const loadCheckedInGuestsListDispatch = (eventId, page) => ({
   type: guestAction.LOAD_CHECKEDIN_GUESTS_LIST,
-  promise: get('http://www.mocky.io/v2/5e0284fd2f00007696dcd644', {}, true),
+  promise: get(`/events/${eventId}/guests?type=checked&p=${page}`, {}, true),
 });
 
 export const acceptTicketDispatch = (eventId, guestId) => ({
