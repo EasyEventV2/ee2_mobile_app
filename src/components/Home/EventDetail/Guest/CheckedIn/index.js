@@ -59,26 +59,26 @@ class CheckedIn extends Component {
       );
     }
     return (
-      <FlatList
-        style={styles.listContainer}
-        data={checkedInGuestsList}
-        extraData={checkedInGuestsList}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text style={styles.text}>{item.email}</Text>
-            <Text style={[styles.text, { color: 'green' }]}>Đã check-in</Text>
-          </View>
-        )}
-        numColumns={1}
-        ListFooterComponent={(
-          <Pagination
-            numbersList={numbersList}
-            currentPage={currentPage}
-            loadPage={(page) => this.loadPage(page)}
-          />
-        )}
-      />
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <FlatList
+          style={styles.listContainer}
+          data={checkedInGuestsList}
+          extraData={checkedInGuestsList}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Text style={styles.text}>{item.email}</Text>
+              <Text style={[styles.text, { color: 'green', alignSelf: 'flex-end' }]}>Đã check-in</Text>
+            </View>
+          )}
+          numColumns={1}
+        />
+        <Pagination
+          numbersList={numbersList}
+          currentPage={currentPage}
+          loadPage={(page) => this.loadPage(page)}
+        />
+      </View>
     );
   }
 

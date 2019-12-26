@@ -1,6 +1,6 @@
 {
   "name": "ee2_mobile_app",
-  "version": "0.0.1",
+  "version": "v0.1.0-alpha.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",

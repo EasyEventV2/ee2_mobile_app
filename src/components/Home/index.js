@@ -14,7 +14,6 @@ import EventCard from 'components/Home/EventCard';
 /* Consts - Utils */
 import Auth from 'utils/auth';
 import Dialog from 'utils/errorDialog';
-import NavigationWithoutProps from 'utils/navigationWithoutProps';
 /* Redux */
 import { logoutDispatch } from 'datalayer/actions/auth.action';
 import { loadEventsListDispatch } from 'datalayer/actions/event.action';
@@ -44,10 +43,6 @@ class Home extends Component {
         }
         this.setState({ loading: false });
       });
-  }
-
-  goToQR = () => {
-    NavigationWithoutProps.navigate('QR');
   }
 
   generateNumbersList = (length) => {

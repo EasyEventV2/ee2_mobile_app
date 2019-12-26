@@ -38,13 +38,18 @@ class QR extends Component {
   handleBarcodeRead = (data) => {
     const { navigation } = this.props;
     const eventId = navigation.getParam('eventId');
+    let barcodeResult = null;
     try {
-      const barcodeResult = JSON.parse(data);
+      barcodeResult = JSON.parse(data);
+    } catch (err) {
+      this.setState({ isBarcodeInvalid: true });
+      return;
+    }
+    if (eventId === barcodeResult.eventId) {
       NavigationWithoutProps.navigate('ResultCheckin', {
-        eventId,
         barcodeResult,
       });
-    } catch (err) {
+    } else {
       this.setState({ isBarcodeInvalid: true });
     }
   }

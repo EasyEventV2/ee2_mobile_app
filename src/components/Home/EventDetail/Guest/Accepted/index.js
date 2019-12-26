@@ -59,26 +59,27 @@ class Accepted extends Component {
       );
     }
     return (
-      <FlatList
-        style={styles.listContainer}
-        data={acceptedGuestsList}
-        extraData={acceptedGuestsList}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text style={styles.text}>{item.email}</Text>
-            <Text style={[styles.text, { color: 'red' }]}>Chưa check-in</Text>
-          </View>
-        )}
-        numColumns={1}
-        ListFooterComponent={(
-          <Pagination
-            numbersList={numbersList}
-            currentPage={currentPage}
-            loadPage={(page) => this.loadPage(page)}
-          />
-        )}
-      />
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <FlatList
+          style={styles.listContainer}
+          data={acceptedGuestsList}
+          extraData={acceptedGuestsList}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Text style={styles.text}>{item.email}</Text>
+              <Text style={[styles.text, { color: 'red', alignSelf: 'flex-end' }]}>Chưa check-in</Text>
+            </View>
+          )}
+          numColumns={1}
+        />
+        <Pagination
+          numbersList={numbersList}
+          currentPage={currentPage}
+          loadPage={(page) => this.loadPage(page)}
+        />
+      </View>
+
     );
   }
 

@@ -94,31 +94,32 @@ class Unaccepted extends Component {
       );
     }
     return (
-      <FlatList
-        style={styles.listContainer}
-        data={unacceptedGuestsList}
-        extraData={unacceptedGuestsList}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text style={styles.text}>{item.email}</Text>
-            <TouchableOpacity
-              onPress={() => this.acceptTicket(item._id)}
-              style={styles.button}
-            >
-              <Text style={styles.text}>Chấp nhận</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        numColumns={1}
-        ListFooterComponent={(
-          <Pagination
-            numbersList={numbersList}
-            currentPage={currentPage}
-            loadPage={(page) => this.loadPage(page)}
-          />
-        )}
-      />
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <FlatList
+          style={styles.listContainer}
+          data={unacceptedGuestsList}
+          extraData={unacceptedGuestsList}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Text style={styles.text}>{item.email}</Text>
+              <TouchableOpacity
+                onPress={() => this.acceptTicket(item._id)}
+                style={styles.button}
+              >
+                <Text style={styles.text}>Chấp nhận</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          numColumns={1}
+        />
+        <Pagination
+          numbersList={numbersList}
+          currentPage={currentPage}
+          loadPage={(page) => this.loadPage(page)}
+        />
+      </View>
+
     );
   }
 

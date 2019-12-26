@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { SCREEN_WIDTH } from 'constants/sizes';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,17 +14,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
   },
-  titleContainer: {
-    marginVertical: 20,
-  },
   titleText: {
-    fontSize: 25,
+    fontSize: SCREEN_WIDTH * 0.1,
     color: 'black',
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: SCREEN_WIDTH * 0.06,
   },
   infoContainer: {
     flex: 1,
-    paddingHorizontal: 20,
+    justifyContent: 'center',
+    paddingHorizontal: SCREEN_WIDTH * 0.05,
   },
   infoText: {
     fontSize: 20,
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 10,
     borderRadius: 8,
-    marginVertical: 20,
+    marginTop: SCREEN_WIDTH * 0.06,
   },
   buttonText: {
     fontSize: 20,

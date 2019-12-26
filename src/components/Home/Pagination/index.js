@@ -86,7 +86,7 @@ class Pagination extends Component {
 
   renderFirstNumbersList = (firstNumbersList) => (
     <FlatList
-      style={styles.numberListContainer}
+      contentContainerStyle={styles.numberListContainer}
       data={firstNumbersList}
       extraData={firstNumbersList}
       listKey={(item) => item.toString()}
@@ -99,7 +99,7 @@ class Pagination extends Component {
 
   renderMiddleNumbersList = (middleNumbersList) => (
     <FlatList
-      style={styles.numberListContainer}
+      contentContainerStyle={styles.numberListContainer}
       data={middleNumbersList}
       extraData={middleNumbersList}
       listKey={(item) => item.toString()}
@@ -111,7 +111,7 @@ class Pagination extends Component {
 
   renderLastNumbersList = (lastNumbersList) => (
     <FlatList
-      style={styles.numberListContainer}
+      contentContainerStyle={styles.numberListContainer}
       data={lastNumbersList}
       extraData={lastNumbersList}
       listKey={(item) => item.toString()}
@@ -178,7 +178,7 @@ class Pagination extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          style={styles.numberListContainer}
+          contentContainerStyle={styles.numberListContainer}
           data={numbersList}
           extraData={numbersList}
           keyExtractor={(item) => item.toString()}
