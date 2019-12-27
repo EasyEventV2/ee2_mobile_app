@@ -65,7 +65,7 @@ class ResultCheckin extends Component {
       <View style={styles.infoContainer}>
         <Text style={styles.titleText}>THÀNH CÔNG</Text>
         <Text style={styles.infoText}>{`Email: ${updatedGuest.email}`}</Text>
-        <Text style={styles.infoText}>{`Giới tính: ${updatedGuest.info.gender}`}</Text>
+        <Text style={styles.infoText}>{`Họ tên: ${updatedGuest.info.full_name}`}</Text>
         <Text style={styles.infoText}>{`Điện thoại: ${updatedGuest.info.phone_number}`}</Text>
         <Text style={styles.infoText}>{`Check-in vào lúc:\n${moment(updatedGuest.checkedInAt).format('HH:MM:SS - DD/MM/YYYY')}`}</Text>
         <TouchableOpacity

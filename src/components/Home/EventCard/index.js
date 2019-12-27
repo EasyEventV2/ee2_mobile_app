@@ -55,13 +55,14 @@ class EventCard extends Component {
     const time = new Date(item.event.start_time);
     const calendarText = moment(time).format('DD/MM/YYYY');
     const { ribbonColor, ribbonText } = this.mapNameToColorAndText(item.name);
+    const dummyImageUrl = 'http://dntvn.org.vn/assets/images/c30s/no-image.png';
     return (
       <TouchableOpacity
         onPress={() => this.goToEventDetail(item.event._id)}
         style={styles.cardElement}
       >
         <ImageBackground
-          source={{ uri: 'https://cdn.flickeringmyth.com/wp-content/uploads/2018/06/Ant-Man-and-the-Wasp-intl-poster-2-600x857.jpg' }}
+          source={{ uri: item.image_url === undefined ? dummyImageUrl : item.image_url }}
           style={styles.imageBackground}
           imageStyle={{ borderRadius: 20 }}
         >
