@@ -58,6 +58,7 @@ class Home extends Component {
     const { itemsList, currentPage, totalPages } = eventList;
     const numbersList = this.generateNumbersList(totalPages);
     const { loading } = this.state;
+    console.log(itemsList);
     if (loading) {
       return (
         <View style={styles.loadingContainer}>

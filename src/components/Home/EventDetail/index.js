@@ -71,7 +71,7 @@ class EventDetail extends Component {
       );
     }
     const {
-      name, description, start_time, end_time, contact, location,
+      name, description, start_time, end_time, contact, location, image_url,
     } = eventDetail;
     const {
       website, facebook, phone_number, email,
@@ -79,10 +79,11 @@ class EventDetail extends Component {
     const {
       latitude, longitude, place, address,
     } = location;
+    const dummyImageUrl = 'http://dntvn.org.vn/assets/images/c30s/no-image.png';
     return (
       <ScrollView style={styles.container}>
         <Image
-          source={{ uri: 'https://cdn.flickeringmyth.com/wp-content/uploads/2018/06/Ant-Man-and-the-Wasp-intl-poster-2-600x857.jpg' }}
+          source={{ uri: image_url === undefined ? dummyImageUrl : image_url }}
           style={styles.posterImg}
         />
         <View style={styles.descriptionContainer}>
