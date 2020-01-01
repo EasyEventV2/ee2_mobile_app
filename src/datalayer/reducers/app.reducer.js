@@ -1,4 +1,4 @@
-import appAction from 'constants/actions';
+import { appAction } from 'constants/actions';
 
 export const INITIAL_STATE = {
   check: false,

@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  View, ScrollView,
 } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+import { connect } from 'react-redux';
+import Login from './Login';
+import SignUp from './SignUp';
+import styles from './index.styles';
 
 class Authentication extends Component {
   render() {
-    const { navigation } = this.props;
+    const { currentComponent } = this.props;
     return (
       <View style={styles.container}>
-        <Text>This is an authentication page!</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Text>Go to Home Page</Text>
-        </TouchableOpacity>
+        <ScrollView>
+          {currentComponent === 'Login' ? <Login /> : <SignUp />}
+        </ScrollView>
       </View>
     );
   }
 }
 
-export default Authentication;
+const mapStateToProps = state => ({
+  currentComponent: state.auth.currentComponent,
+});
+
+export default connect(mapStateToProps, null)(Authentication);
