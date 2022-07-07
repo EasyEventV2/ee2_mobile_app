@@ -18,7 +18,7 @@
     "@react-native-community/async-storage": "1.6.3",
     "chalk": "2.4.2",
     "deep-freeze": "0.0.1",
-    "moment": "2.24.0",
+    "moment": "2.29.4",
     "query-string": "6.8.3",
     "react": "16.8.3",
     "react-native": "0.59.9",
